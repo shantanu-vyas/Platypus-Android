@@ -127,8 +127,8 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
 	public static final double RUDDER_MIN = 1.0;
 	public static final double RUDDER_MAX = -1.0;
 
-	List<LatLng> waypointList = new ArrayList();
-	List<Marker> markerList = new ArrayList();
+	List<LatLng> waypointList = new ArrayList(); //List of all upcoming waypoints
+	List<Marker> markerList = new ArrayList(); //List of all the markers on the map corresponding to the given waypoints
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -159,6 +159,13 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
 		//cameraStream.setImageResource(R.drawable.streamnotfound);
 		map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
 
+
+        /*
+        * This gets called when a boat is connected
+        * Note it has to draw the boat somewhere initially until it gets a gps loc so it draws it
+        * on PantherHollow lake until it gets a new gps loc and will then update to the current
+        * position
+         */
 		if (ConnectScreen.getBoatType() == true) {
 			boat2 = map.addMarker(new MarkerOptions()
 					.anchor(.5f, .5f)
@@ -166,17 +173,20 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
 					.rotation(270)
 					.title("Boat 1")
 					.snippet(ConnectScreen.boat.getIpAddress().toString())
-					.position(pHollowStartingPoint)
+					.position(pHollowStartingPoint) //draws at panther hollow initially
 					//.icon(BitmapDescriptorFactory
 					//		.fromResource(R.drawable.airboat))
 					);
 			
 			//set camera to panther hollow until gps is found
-			map.moveCamera(CameraUpdateFactory.newLatLngZoom(
+			map.moveCamera(CameraUpdateFactory.newLatLngZoom( //moves the view to panther hollow
 					pHollowStartingPoint, 14));
 			map.animateCamera(CameraUpdateFactory.zoomTo(17.0f));
 
 			//waypoint on click listener
+            /*
+             * if the add waypoint button is pressed and new marker where ever they click
+             */
 			map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
 				@Override
 				public void onMapClick(LatLng point) {
@@ -194,7 +204,9 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
 					}
 				}
 			});
-
+            /*
+             * If they press delete wayponts delete all markers off the map and delete waypoints
+             */
 			deleteWaypoint.setOnClickListener(new View.OnClickListener() {
 				public void onClick(View v) {
 					// ConnectScreen.boat.cancelWaypoint();
@@ -205,16 +217,19 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
 					// Perform action on click
 				}
 			});
-			networkThread = new NetworkAsync().execute();
-			actualBoat();
+			networkThread = new NetworkAsync().execute(); //launch networking asnyc task
 		}
+
+        /*
+         * if its a simulated boat run the code for that
+         */
 		if (ConnectScreen.getBoatType() == false) {
 			ipAddressBox.setText("Simulated Phone");
 			simulatedBoat();
 		}
 
-		thrust.setProgress(0);
-		rudder.setProgress(50);
+		thrust.setProgress(0); //initially set thrust to 0
+		rudder.setProgress(50); //initially set rudder to center (50)
 
 		ipAddressBox.setText(ConnectScreen.boat.getIpAddress().toString());
 		// setVehicle();
@@ -238,7 +253,7 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
 	 super.onResume();
 	 //Intent intent = new Intent(this, TeleOpPanel.class);
 	 //startActivity(intent);
-	 if (networkThread.isCancelled())
+	 if (networkThread.isCancelled()) //figure out how to resume asnyc task?
 	 	{
 	 	//	networkThread.execute();
 	 	}
@@ -261,7 +276,7 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
 		}
 	}
 
-	public void updateVelocity(Boat a) {
+	public void updateVelocity(Boat a) { //taken right from desktop client for updating velocity
 		// ConnectScreen.boat.setVelocity(thrust.getProgress(),
 		// rudder.getProgress());
 		if (a.returnServer() != null) {
@@ -284,6 +299,10 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
 		}
 	}
 
+    /*
+     * this async task handles all of the networking on the boat since networking has to be done on
+     * a different thread and since gui updates have to be updated on the main thread ....
+     */
 	private class NetworkAsync extends AsyncTask<String, Integer, String> {
 		long oldTime = 0;
 		String tester = "done";
@@ -292,7 +311,7 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
 
 		@Override
 		protected String doInBackground(String... arg0) {
-			PoseListener pl = new PoseListener() {
+			PoseListener pl = new PoseListener() { //gets the location of the boat
 				public void receivedPose(UtmPose upwcs) {
 					UtmPose _pose = upwcs.clone();
 					{
@@ -313,19 +332,19 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
 					}
 				}
 			};
-			// waypoint checker
+            ConnectScreen.boat.returnServer().addPoseListener(pl, null);
+
+			// waypoint checker || edit: idk what this is for?
 			ConnectScreen.boat.returnServer().addWaypointListener(new WaypointListener() {
 	            public void waypointUpdate(WaypointState ws) {
 	            	boatwaypoint = ws.toString();
 	                        }
 	                    }, null);
 
-			
 
-			ConnectScreen.boat.returnServer().addPoseListener(pl, null);
 
 			// setVelListener();
-			while (true) {
+			while (true) { //constantly looping
 				if (System.currentTimeMillis() % 100 == 0
 						&& oldTime != System.currentTimeMillis()) {
 
@@ -336,16 +355,20 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
 						connected = false;
 					}
 
-					if (thrust.getProgress() != thrustTemp) {
+					if (thrust.getProgress() != thrustTemp) { //update velocity
 						updateVelocity(ConnectScreen.boat);
 					}
 
-					if (rudder.getProgress() != rudderTemp) {
+					if (rudder.getProgress() != rudderTemp) { //update rudder
 						updateVelocity(ConnectScreen.boat);
 					}
-						//try potentially causing the hanging
 						
 						//System.out.println("Waypoint list size: " + waypointList.size());
+                    /*
+                     * gets first waypoint in waypointlist array
+                     * sends to boat
+                     * deletes from array
+                     */
 						if (waypointList.size() >= 1)
 						{
 							checktest = true;
@@ -356,6 +379,7 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
 							ConnectScreen.boat.returnServer().startWaypoints(wpPose, "POINT_AND_SHOOT", null);
 							waypointList.remove(0);
 						}
+
 						thrustTemp = thrust.getProgress();
 						rudderTemp = rudder.getProgress();
 						oldTime = System.currentTimeMillis();
@@ -373,7 +397,7 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
 			//cameraStream.setImageBitmap(currentImage);
 
 			try {
-				log.setText(a);
+				//log.setText(a);
 				//log.setText(String.valueOf(waypointList.get(0))+ "\n" + boatwaypoint +"\n Achieved Waypoint: "
 						//+ (String.valueOf(ConnectScreen.boat.getCurrentWaypointStatus())));
 				//log.setText(String.valueOf(waypointList.get(0))+"\n"+boatwaypoint);
@@ -384,15 +408,19 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
 				// log.setText(waypointList.toString());
 				//a++;
 								
-				boat2.setPosition(new LatLng(latlongloc
+				boat2.setPosition(new LatLng(latlongloc //draw the boat on the map!
 						.latitudeValue(SI.RADIAN) * 57.2957795, latlongloc
 						.longitudeValue(SI.RADIAN) * 57.2957795));
 				// test.setText(String.valueOf(rot * 57.2957795));
-				boat2.setRotation((float) (rot * 57.2957795));
+				boat2.setRotation((float) (rot * 57.2957795)); //set boats rotation!
 				if (firstTime == true) {
-					//testCamera();
+					//testCamera(); // does the camera even work!?!?!?!?
+
+                    /*
+                     * sets the view to where the boat is
+                     * if there is not location it will crash (nullpointer)
+                     */
 					try {
-						
 						map.moveCamera(CameraUpdateFactory.newLatLngZoom(
 								new LatLng(
 										latlongloc.latitudeValue(SI.RADIAN) * 57.2957795,
@@ -437,11 +465,8 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
 		}
 	}
 
-	public void actualBoat() {
-	}
-
 	public void simulatedBoat() {
-		boat2 = map.addMarker(new MarkerOptions().anchor(.5f, .5f)
+		boat2 = map.addMarker(new MarkerOptions().anchor(.5f, .5f) //add boat to panther hollow
 				.rotation(270).title("Boat 1")
 				.snippet("IP Address: 192.168.1.1")
 				.position(pHollowStartingPoint).title("Boat 1")
@@ -457,7 +482,7 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
 		map.animateCamera(CameraUpdateFactory.zoomTo(17.0f));
 
 		boat2.setRotation((float) (heading * (180 / Math.PI)));
-		handlerRudder.post(new Runnable() {
+		handlerRudder.post(new Runnable() { //control the boat
 			@Override
 			public void run() {
 				if (thrust.getProgress() > 0) {
@@ -538,7 +563,7 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
 		}
 	}
 
-	public void updateViaAcceleration(float xval, float yval, float zval) {
+	public void updateViaAcceleration(float xval, float yval, float zval) { //update the thrust via accelerometers 
 		if (Math.abs(tempX - last_x) > 2.5) {
 
 			if (last_x > 2) {
