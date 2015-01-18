@@ -133,7 +133,8 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		this.setContentView(R.layout.teleoppanel);
+		//this.setContentView(R.layout.teleoppanel);
+        this.setContentView(R.layout.tabletlayout);
 		// initBoat();
 		ipAddressBox = (TextView) this.findViewById(R.id.printIpAddress);
 		thrust = (SeekBar) this.findViewById(R.id.thrustBar);

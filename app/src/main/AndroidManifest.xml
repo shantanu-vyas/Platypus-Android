@@ -16,8 +16,8 @@
         android:theme="@style/AppTheme"
         android:logo="@drawable/logo"
 		android:configChanges="orientation"> <!-- lock orienation so async task doesnt die (shitty workaround) -->
-        
-       
+
+
         <activity
             android:name="com.example.platypuscontrolapp.ConnectScreen"
             android:label="@string/app_name"
@@ -33,7 +33,7 @@
          <activity
             android:name="com.example.platypuscontrolapp.TeleOpPanel"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"
+            android:screenOrientation="landscape"
    			android:configChanges="orientation|keyboardHidden"> 
             <intent-filter>
                 <action android:name="android.intent.action.TeleOpPanel" />

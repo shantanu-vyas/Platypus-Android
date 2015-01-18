@@ -1,41 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<pre-dex-items>
+<items version="2" >
 
     <item
-        dex="C:\Users\Shantanu\AndroidstudioProjects\PlatypusControlApp1\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.0-0bac191a0722cfc9d719e8aee2e0299c6f61a003.jar"
-        jar="C:\Users\Shantanu\AndroidstudioProjects\PlatypusControlApp1\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.0\libs\internal_impl-21.0.0.jar"
+        jar="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
         jumboMode="false"
         revision="20.0.0"
-        sha1="1609e6d42d0480b0f4188e2c29f75388fa12a8f0"/>
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-25322fe6f68127091c275ad55c5d1a22ad81cdf1.jar" />
+    </item>
     <item
-        dex="C:\Users\Shantanu\AndroidstudioProjects\PlatypusControlApp1\app\build\intermediates\pre-dexed\debug\jscience-c2806e07977804466409fbed0b5778f95295df2e.jar"
-        jar="C:\Users\Shantanu\AndroidstudioProjects\PlatypusControlApp1\app\libs\jscience.jar"
+        jar="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services\6.5.87\classes.jar"
         jumboMode="false"
         revision="20.0.0"
-        sha1="3cf905c5fef64bc14c1ff3cdf19a2181e9069d1c"/>
+        sha1="dd9247ea0fabe8ee479638c4b4a23e93752be256">
+        <dex dex="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\build\intermediates\pre-dexed\debug\classes-79861aa9e98deea0f1327f771555472122f9908a.jar" />
+    </item>
     <item
-        dex="C:\Users\Shantanu\AndroidstudioProjects\PlatypusControlApp1\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.0-453f822794ace6cf974e49c10b489f54fd82d98b.jar"
-        jar="C:\Users\Shantanu\AppData\Local\Android\android-studio1\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.0\support-annotations-21.0.0.jar"
+        jar="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\libs\crwlib_core.jar"
         jumboMode="false"
         revision="20.0.0"
-        sha1="1a578b9607b36266c63d43a4fa0ab5664dbe911e"/>
+        sha1="f1ec0842283e928ed04fdaf3801bb7d117ec470a">
+        <dex dex="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\build\intermediates\pre-dexed\debug\crwlib_core-dedc5b876cdb622e4dc7f6ac0f8da32534ba1615.jar" />
+    </item>
     <item
-        dex="C:\Users\Shantanu\AndroidstudioProjects\PlatypusControlApp1\app\build\intermediates\pre-dexed\debug\classes-0651080989db9df3e635d74c247a84a1b87b0fe2.jar"
-        jar="C:\Users\Shantanu\AndroidstudioProjects\PlatypusControlApp1\app\build\intermediates\exploded-aar\com.google.android.gms\play-services\6.1.71\classes.jar"
+        jar="C:\Users\Shantanu\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
         jumboMode="false"
         revision="20.0.0"
-        sha1="0f6d5c1ef2e982c3b7858408e3df389cf5d202da"/>
+        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
+        <dex dex="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-c8e20010fa01d4b728f406e18d88c265bb67dc8c.jar" />
+    </item>
     <item
-        dex="C:\Users\Shantanu\AndroidstudioProjects\PlatypusControlApp1\app\build\intermediates\pre-dexed\debug\classes-d4b1c1bd4bea70382eef756e5b1d77ac8b631bdb.jar"
-        jar="C:\Users\Shantanu\AndroidstudioProjects\PlatypusControlApp1\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.0\classes.jar"
+        jar="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\libs\jscience.jar"
         jumboMode="false"
         revision="20.0.0"
-        sha1="686344a780033e4ba22b926cd225f8d4941247e6"/>
+        sha1="3cf905c5fef64bc14c1ff3cdf19a2181e9069d1c">
+        <dex dex="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\build\intermediates\pre-dexed\debug\jscience-3fec36335414c0ea9f4734c4fb132883747d0bec.jar" />
+    </item>
     <item
-        dex="C:\Users\Shantanu\AndroidstudioProjects\PlatypusControlApp1\app\build\intermediates\pre-dexed\debug\crwlib_core-b66195fc7fd1637d876f81c434eba3a41a653192.jar"
-        jar="C:\Users\Shantanu\AndroidstudioProjects\PlatypusControlApp1\app\libs\crwlib_core.jar"
+        jar="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
         jumboMode="false"
         revision="20.0.0"
-        sha1="f1ec0842283e928ed04fdaf3801bb7d117ec470a"/>
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\build\intermediates\pre-dexed\debug\classes-6e94af24ef5d10abc2b66f35b90c366bfd4849ec.jar" />
+    </item>
 
-</pre-dex-items>
+</items>
