@@ -420,7 +420,7 @@ containing a value of this type.
     }
     public static final class id {
         public static final int Autonomous=0x7f06002a;
-        public static final int action_settings=0x7f060033;
+        public static final int action_settings=0x7f060034;
         public static final int actualBoatRadio=0x7f06001f;
         public static final int adjust_height=0x7f060002;
         public static final int adjust_width=0x7f060001;
@@ -431,6 +431,7 @@ containing a value of this type.
         public static final int classic=0x7f060014;
         public static final int color=0x7f06001c;
         public static final int colorBox=0x7f06001d;
+        public static final int connectButton=0x7f06002f;
         public static final int controlScreenEnter=0x7f06002d;
         public static final int donate_with_google=0x7f060013;
         public static final int enterscreen=0x7f060017;
@@ -445,7 +446,7 @@ containing a value of this type.
         public static final int iptest=0x7f06002b;
         public static final int linlay=0x7f06002c;
         public static final int location=0x7f060023;
-        public static final int log=0x7f060032;
+        public static final int log=0x7f060033;
         public static final int map=0x7f060022;
         public static final int match_parent=0x7f06000e;
         public static final int monochrome=0x7f060016;
@@ -467,20 +468,21 @@ containing a value of this type.
         public static final int terrain=0x7f060005;
         public static final int thrustBar=0x7f060026;
         public static final int thrustBarTextView=0x7f060025;
-        public static final int tiltButton=0x7f06002f;
-        public static final int waypointButton=0x7f060030;
-        public static final int waypointDeleteButton=0x7f060031;
+        public static final int tiltButton=0x7f060030;
+        public static final int waypointButton=0x7f060031;
+        public static final int waypointDeleteButton=0x7f060032;
         public static final int wrap_content=0x7f06000f;
     }
     public static final class integer {
         public static final int google_play_services_version=0x7f080000;
     }
     public static final class layout {
-        public static final int connectscreen=0x7f030000;
-        public static final int maptest=0x7f030001;
-        public static final int servertest=0x7f030002;
-        public static final int tabletlayout=0x7f030003;
-        public static final int teleoppanel=0x7f030004;
+        public static final int connectdialog=0x7f030000;
+        public static final int connectscreen=0x7f030001;
+        public static final int maptest=0x7f030002;
+        public static final int servertest=0x7f030003;
+        public static final int tabletlayout=0x7f030004;
+        public static final int teleoppanel=0x7f030005;
     }
     public static final class menu {
         public static final int loading_screen=0x7f0b0000;

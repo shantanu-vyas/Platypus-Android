@@ -117,7 +117,16 @@
             android:layout_below="@id/thrustBar"
             android:layout_toRightOf="@id/rudderBarTextView"/>
 
+        <Button
+            android:id="@+id/connectButton"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_toRightOf="@+id/thrustBar"
+            android:layout_marginLeft="200dp"
+            android:text="Connect"
+            >
 
+        </Button>
         <ToggleButton
             android:id="@+id/tiltButton"
             android:layout_width="wrap_content"
@@ -125,19 +134,18 @@
             android:textOn="Tilt Control Activated"
             android:textOff="Tilt Control Deactivated"
             android:text="Tilt Control"
-            android:layout_toRightOf="@id/thrustBar"
-            android:layout_marginLeft="200dp"
-            />
+            android:layout_toRightOf="@id/connectButton"
+
+            android:checked="false" />
         <ToggleButton
             android:id="@+id/waypointButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textOn="Add Waypoint"
             android:textOff="Add Waypoint"
-
             android:layout_alignBottom="@+id/rudderBar"
-            android:layout_alignLeft="@+id/tiltButton"
-            android:layout_alignStart="@+id/tiltButton" />
+            android:layout_alignLeft="@+id/connectButton"
+            android:layout_alignStart="@+id/connectButton" />
         <Button
             android:id="@+id/waypointDeleteButton"
             android:layout_width="wrap_content"
