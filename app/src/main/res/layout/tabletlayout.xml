@@ -135,8 +135,13 @@
             android:textOff="Tilt Control Deactivated"
             android:text="Tilt Control"
             android:layout_toRightOf="@id/connectButton"
-
             android:checked="false" />
+        <Button
+            android:id="@+id/loadFileButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Load Waypoints from File"
+            android:layout_toRightOf="@id/tiltButton"/>
         <ToggleButton
             android:id="@+id/waypointButton"
             android:layout_width="wrap_content"
@@ -156,7 +161,15 @@
             android:layout_toRightOf="@+id/waypointButton"
             android:layout_toEndOf="@+id/waypointButton" />
 
-
+        <CheckBox
+            android:id="@+id/autonomousBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Autonomous"
+            android:layout_alignTop="@+id/rudderBar"
+            android:layout_alignLeft="@+id/log"
+            android:layout_alignStart="@+id/log"
+            android:checked="false" />
         <TextView
             android:id="@+id/log"
             android:layout_width="wrap_content"

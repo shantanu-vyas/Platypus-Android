@@ -1,8 +1,11 @@
 package com.example.platypuscontrolapp;
-
+//code load waypoitns from file
+import java.io.File;
+import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
@@ -16,6 +19,7 @@ import org.jscience.geography.coordinates.crs.ReferenceEllipsoid;
 
 
 import edu.cmu.ri.crw.CrwNetworkUtils;
+import edu.cmu.ri.crw.VehicleServer;
 import robotutils.Pose3D;
 import android.app.Activity;
 import android.content.Context;
@@ -49,6 +53,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
 
 import edu.cmu.ri.crw.FunctionObserver;
 import edu.cmu.ri.crw.ImageListener;
@@ -84,6 +89,8 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
     //TextView log = null;
     Handler network = new Handler();
     ImageView cameraStream = null;
+    Button loadWPFile = null;
+
     boolean checktest;
     int a = 0;
 
@@ -102,10 +109,10 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
     Marker boat2;
     LatLng pHollowStartingPoint = new LatLng((float) 40.436871,
             (float) -79.948825);
-
+    long lastTime = -1;
     double lat = 10;
     double lon = 10;
-
+    String waypointStatus = "";
     Handler handlerRudder = new Handler();
     int thrustCurrent;
     int rudderCurrent;
@@ -122,10 +129,11 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
     float tempY = 0;
 
     Bitmap currentImage = null;
+    boolean isAutonomous;
 
     SensorManager senSensorManager;
     Sensor senAccelerometer;
-
+    public boolean stopWaypoints = true;
     private long lastUpdate = 0;
     private float last_x, last_y, last_z;
     private static final int SHAKE_THRESHOLD = 600;
@@ -146,7 +154,8 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
     public static boolean actual;
     public static Boat currentBoat;
     public static InetSocketAddress address;
-
+    public CheckBox autoBox;
+    private final Object _waypointLock = new Object(); //deadlock?!??
 
 
     boolean dialogClosed = false;
@@ -154,7 +163,7 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
     public static TextView log;
     Dialog connectDialog;
 
-    List<LatLng> waypointList = new ArrayList(); //List of all upcoming waypoints
+    List<LatLng> waypointList = new ArrayList<LatLng>(); //List of all upcoming waypoints
     List<Marker> markerList = new ArrayList(); //List of all the markers on the map corresponding to the given waypoints
 
 
@@ -175,6 +184,8 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
         deleteWaypoint = (Button) this.findViewById(R.id.waypointDeleteButton);
         connectButton = (Button) this.findViewById(R.id.connectButton);
         log = (TextView) this.findViewById(R.id.log);
+        loadWPFile = (Button)this.findViewById(R.id.loadFileButton);
+        autoBox = (CheckBox) this.findViewById(R.id.autonomousBox);
 
         thrust.setProgress(0); //initially set thrust to 0
         rudder.setProgress(50); //initially set rudder to center (50)
@@ -208,7 +219,8 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
     public void dialogClose()
     {
           if (getBoatType() == true) {
-              log.append("asdf");
+              //log.append("asdf");
+
               boat2 = map.addMarker(new MarkerOptions()
                       .anchor(.5f, .5f)
                       .flat(true)
@@ -251,7 +263,8 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
              */
               deleteWaypoint.setOnClickListener(new View.OnClickListener() {
                   public void onClick(View v) {
-                      // ConnectScreen.boat.cancelWaypoint();
+                      // ConnectScreen.boat.cancelWaypoint)
+                      stopWaypoints = true;
                       for (Marker i : markerList) {
                           i.remove();
                       }
@@ -353,12 +366,19 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
      * this async task handles all of the networking on the boat since networking has to be done on
      * a different thread and since gui updates have to be updated on the main thread ....
      */
+
     private class NetworkAsync extends AsyncTask<String, Integer, String> {
         long oldTime = 0;
         String tester = "done";
         boolean connected = false;
         boolean firstTime = true;
 
+
+        @Override
+        protected void onPreExecute()
+        {
+
+        }
         @Override
         protected String doInBackground(String... arg0) {
             PoseListener pl = new PoseListener() { //gets the location of the boat
@@ -383,19 +403,15 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
                 }
             };
             currentBoat.returnServer().addPoseListener(pl, null);
+            testWaypointListener();
 
-            // waypoint checker || edit: idk what this is for?
-            currentBoat.returnServer().addWaypointListener(new WaypointListener() {
-                public void waypointUpdate(WaypointState ws) {
-                    boatwaypoint = ws.toString();
-                }
-            }, null);
 
 
             // setVelListener();
             while (true) { //constantly looping
                 if (System.currentTimeMillis() % 100 == 0
                         && oldTime != System.currentTimeMillis()) {
+
 
                     if (currentBoat.isConnected() == true) {
                         connected = true;
@@ -412,30 +428,63 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
                         updateVelocity(currentBoat);
                     }
 
-                    //System.out.println("Waypoint list size: " + waypointList.size());
-                    /*
-                     * gets first waypoint in waypointlist array
-                     * sends to boat
-                     * deletes from array
-                     */
-                    if (waypointList.size() >= 1) {
+//                    }
+                    //make this a method
+                    if(stopWaypoints == true)
+                    {
+                        currentBoat.returnServer().stopWaypoints(null);
+                        stopWaypoints = false;
+                    }
+                    if (waypointList.size() > 0) {
+                       // System.out.println("waypointList > 0");
                         checktest = true;
-                        UtmPose tempUtm = convertLatLngUtm(waypointList.get(0));
+                        UtmPose tempUtm = convertLatLngUtm(waypointList.get(waypointList.size()-1));
+;                       waypointStatus = tempUtm.toString();
+
+                        //System.out.println("wps" + waypointStatus);
                         currentBoat.addWaypoint(tempUtm.pose, tempUtm.origin);
                         UtmPose[] wpPose = new UtmPose[1];
-                        wpPose[0] = new UtmPose(tempUtm.pose, tempUtm.origin);
-                        currentBoat.returnServer().startWaypoints(wpPose, "POINT_AND_SHOOT", null);
+                        synchronized(_waypointLock)
+                        {
+                            wpPose[0] = new UtmPose(tempUtm.pose, tempUtm.origin);
+                        }
+
+                        System.out.println(tempUtm.pose.toString());
+                        System.out.println(tempUtm.origin.toString());
+                        checkAndSleepForCmd();
+                        currentBoat.returnServer().setAutonomous(true, null);
+                        currentBoat.returnServer().startWaypoints(wpPose, "POINT_AND_SHOOT", new FunctionObserver<Void>() {
+                            @Override
+                            public void completed(Void aVoid) {
+                                // log.append("completed waypoint");
+
+                                //waypointStatus = waypointStatus + " passed" ;
+                            }
+
+                            @Override
+                            public void failed(FunctionError functionError) {
+                                waypointStatus = waypointStatus + "\n" + functionError.toString();
+                                System.out.println(waypointStatus);
+                            }
+                        });
                         waypointList.remove(0);
+                        //move items in array over it wont do anything passed first waypoint?
+//                        if (waypointList.size() == 0 && currentBoat.returnServer() == WaypointState.DONE)
+//                        {
+//                            currentBoat.returnServer().setAutonomous(false, null);
+//                        } fix this before submitting to repo
                     }
-
-                    thrustTemp = thrust.getProgress();
-                    rudderTemp = rudder.getProgress();
-                    oldTime = System.currentTimeMillis();
+                   // currentBoat.returnServer().setAutonomous(false,null);
 
 
-                    publishProgress();
+                thrustTemp = thrust.getProgress();
+                rudderTemp = rudder.getProgress();
+                oldTime = System.currentTimeMillis();
 
-                }
+
+                publishProgress();
+
+             }
             }
         }
 
@@ -479,14 +528,23 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
 
                         //a = 2;
                         firstTime = false;
+
                         currentBoat.returnServer().addWaypointListener(new WaypointListener() {
                             public void waypointUpdate(WaypointState ws) {
                                 boatwaypoint = ws.toString();
+                                if (ws == WaypointState.DONE)
+                                {
+                                    System.out.println("waypoint actually done");
+                                }
+                                System.out.println("waypointstatus"+ws.toString()+a);
+                                a++;
+                                //waypoint status is always paused
                             }
                         }, null);
                     } catch (Exception e) {
                         firstTime = true;
                     }
+
                 }
 
                 // boat2.setSnippet(String.valueOf(latlongloc.toText();
@@ -511,6 +569,8 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
             rudderProgress.setText(String.valueOf(fromProgressToRange(
                     rudder.getProgress(), RUDDER_MIN, RUDDER_MAX)));
 
+            log.setText("\n" + waypointStatus.toString());
+            autoBox.setChecked(isAutonomous);
         }
     }
 
@@ -600,8 +660,8 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
                     if (speed > SHAKE_THRESHOLD) {
                     }
 
-                    last_x = x; // rudder
-                    last_y = y;
+                    last_x = y; // rudder switching x and z for tesing orientation
+                    last_y = x;
                     last_z = z; // thrust
                     // test.setText("x: " + last_x + "y: " + last_y + "z: "
                     // + last_z);
@@ -624,10 +684,10 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
         }
         if (Math.abs(tempY - last_y) > 1) {
             if (last_y > 2) {
-                rudder.setProgress(rudder.getProgress() + 3);
+                rudder.setProgress(rudder.getProgress() - 3);
             }
             if (last_y < -2) {
-                rudder.setProgress(rudder.getProgress() - 3);
+                rudder.setProgress(rudder.getProgress() + 3);
             }
         }
     }
@@ -711,7 +771,7 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
                 try {
                     Bitmap image1 = BitmapFactory.decodeByteArray(imageData, 0, 15);
                     if (image1 != null) {
-                        a++;
+                       // a++;
                         //System.out.println("image made");
                         currentImage = image1;
 
@@ -738,9 +798,12 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
         submitButton.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-               // int selectedId = simvsact.getCheckedRadioButtonId();
-                //int selectedOption = actvsim.getCheckedRadioButtonId();
-                //log.append("asdf" + selectedOption);
+                    // int selectedId = simvsact.getCheckedRadioButtonId();
+                    //int selectedOption = actvsim.getCheckedRadioButtonId();
+                    //log.append("asdf" + selectedOption);
+                    if (boat2 != null)
+                    {boat2.remove();}
+                    markerList = new ArrayList<Marker>();
                 actual = actualBoat.isChecked();
 
                 textIpAddress = ipAddress.getText().toString();
@@ -749,7 +812,7 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
                     address = CrwNetworkUtils.toInetSocketAddress("127.0.0.1" + ":11411");
                 }
                 address = CrwNetworkUtils.toInetSocketAddress(textIpAddress + ":11411");
-                log.setText(address.toString());
+                log.append("\n" + address.toString());
                 currentBoat = new Boat(address);
                 dialog.dismiss();
                 dialogClose();
@@ -771,8 +834,57 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
     public static boolean getBoatType() {
         return actual;
     }
+    public void waypointListenerTest()
+    {
+        currentBoat.returnServer().addWaypointListener(new WaypointListener() {
+            @Override
+            public void waypointUpdate(WaypointState waypointState) {
+                System.out.println("waypontstate: " + waypointState.toString());
+            }
+        },null);
+    }
+    public void testWaypointListener()
+    {
+        //this gets called on doInBackground() in the async task
+        currentBoat.returnServer().addWaypointListener(new WaypointListener() {
+            public void waypointUpdate(WaypointState ws) {
+                boatwaypoint = ws.toString();
+                currentBoat.returnServer().isAutonomous(new FunctionObserver<Boolean>() {
+                    @Override
+                    public void completed(Boolean aBoolean) {
+                        isAutonomous = aBoolean;
+                    }
 
+                    @Override
+                    public void failed(FunctionError functionError) {
 
+                    }
+                });
+                //System.out.println(boatwaypoint);
+            }
+        }, null);
+    }
+    private void checkAndSleepForCmd() {
+        if (lastTime >= 0) {
+            long timeGap = 1000 - (System.currentTimeMillis() - lastTime);
+            if (timeGap > 0) {
+                try {
+                    Thread.sleep(timeGap);
+                } catch (InterruptedException ex) {
+                }
+            }
+        }
+        lastTime = System.currentTimeMillis();
+    }
+    public void fromFiletoWPList() throws IOException
+    {
+        //code for opening window for meantime have tmep folder with one file it accepts for wp list
+        File readFile = new File("");
+        Scanner fileReader = new Scanner(readFile);
+        //set delimeter
+        //parse text into latlong
+        //waypointList.add(fileReader.next());
+    }
 }
 //
 //class
