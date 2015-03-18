@@ -24,6 +24,7 @@ import robotutils.Pose3D;
 import android.app.Activity;
 import android.content.Context;
 
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -67,6 +68,8 @@ import edu.cmu.ri.crw.data.Utm;
 import edu.cmu.ri.crw.data.UtmPose;
 
 import android.app.Dialog;
+import android.app.AlertDialog;
+
 import android.view.View.OnClickListener;
 
 public class TeleOpPanel extends Activity implements SensorEventListener {
@@ -156,7 +159,7 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
     public static InetSocketAddress address;
     public CheckBox autoBox;
     private final Object _waypointLock = new Object(); //deadlock?!??
-
+    boolean failedwp = true;
 
     boolean dialogClosed = false;
 
@@ -167,7 +170,7 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
     List<Marker> markerList = new ArrayList(); //List of all the markers on the map corresponding to the given waypoints
 
 
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)   {
         super.onCreate(savedInstanceState);
 
         this.setContentView(R.layout.tabletlayout);
@@ -207,6 +210,48 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
 
         connectBox();
 
+        loadWPFile.setOnClickListener(
+                new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    try {
+
+                        if(setWaypointsFromFile()==false) {
+                            failedwp = true;
+//
+                        }
+                        else
+                        {
+                            failedwp = false;
+                        }
+                    }
+                    catch(Exception e)
+                    {
+
+                    }
+                }
+            });
+
+        final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+        alertDialog.setTitle("Add Waypoints from File");
+        if (failedwp == true)
+        {
+            alertDialog.setMessage("Waypoint File was in the incorrect formatting. \n No Current Waypoints");
+            waypointList.clear();
+            for (Marker i : markerList) {
+                i.remove();
+            }
+        }
+        else {
+            alertDialog.setMessage("Waypoints Added and Started");
+        }
+
+        alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                alertDialog.dismiss();
+            }
+        });
+        alertDialog.show();
         //actual = true;
 
         /*
@@ -884,6 +929,56 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
         //set delimeter
         //parse text into latlong
         //waypointList.add(fileReader.next());
+    }
+
+    /* at the moment does not validate files! make sure your waypoint file is correctly matched this will be implemented later..*/
+    public boolean setWaypointsFromFile() throws IOException {
+        File wpFile = null;
+        try {
+            wpFile = new File("./waypoints.txt");
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.toString());
+        }
+        Scanner fileScanner;
+        int valueCounter = 0;
+        //first make sure even number of elements
+
+        if (wpFile.exists()) {
+            fileScanner = new Scanner(wpFile);
+            //first make sure even number of element
+            while(fileScanner.hasNext())
+            {
+                try
+                {
+                    LatLng temp = new LatLng(Double.parseDouble(fileScanner.next()), Double.parseDouble(fileScanner.next()));
+                    waypointList.add(temp);
+                    Marker tempMarker = map.addMarker(new MarkerOptions().position(temp));
+                    markerList.add(tempMarker);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Invalid LAT/LNG in file");
+                }
+                System.out.println(fileScanner.next() + " " + fileScanner.next());
+                valueCounter+=2;
+            }
+            System.out.println("amount of elements: " + valueCounter);
+            if ((valueCounter % 2) != 0)
+            {
+                System.out.println("Mismatching lat long vals");
+                return false;
+            }
+            else
+            {
+                System.out.println("Valid");
+            }
+        } else
+        {
+            System.out.println("File not found");
+        }
+        return true;
     }
 }
 //

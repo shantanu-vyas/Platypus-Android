@@ -107,10 +107,11 @@ int drawable powered_by_google_dark 0x7f020021
 int drawable powered_by_google_light 0x7f020022
 int drawable streamnotfound 0x7f020023
 int id Autonomous 0x7f06002a
-int id action_settings 0x7f060034
+int id action_settings 0x7f060036
 int id actualBoatRadio 0x7f06001f
 int id adjust_height 0x7f060002
 int id adjust_width 0x7f060001
+int id autonomousBox 0x7f060034
 int id book_now 0x7f060012
 int id buyButton 0x7f06000c
 int id buy_now 0x7f060011
@@ -132,8 +133,9 @@ int id ipAddress1 0x7f060019
 int id ipaddress 0x7f060018
 int id iptest 0x7f06002b
 int id linlay 0x7f06002c
+int id loadFileButton 0x7f060031
 int id location 0x7f060023
-int id log 0x7f060033
+int id log 0x7f060035
 int id map 0x7f060022
 int id match_parent 0x7f06000e
 int id monochrome 0x7f060016
@@ -156,8 +158,8 @@ int id terrain 0x7f060005
 int id thrustBar 0x7f060026
 int id thrustBarTextView 0x7f060025
 int id tiltButton 0x7f060030
-int id waypointButton 0x7f060031
-int id waypointDeleteButton 0x7f060032
+int id waypointButton 0x7f060032
+int id waypointDeleteButton 0x7f060033
 int id wrap_content 0x7f06000f
 int integer google_play_services_version 0x7f080000
 int layout connectdialog 0x7f030000
@@ -166,6 +168,7 @@ int layout maptest 0x7f030002
 int layout servertest 0x7f030003
 int layout tabletlayout 0x7f030004
 int layout teleoppanel 0x7f030005
+int layout waypointeditor 0x7f030006
 int menu loading_screen 0x7f0b0000
 int raw gtm_analytics 0x7f040000
 int string accept 0x7f090000
