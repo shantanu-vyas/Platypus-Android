@@ -84,13 +84,14 @@
       <file leaf-file-name="TeleOpPanel.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/platypuscontrolapp/TeleOpPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.74596775" vertical-offset="4611" max-vertical-offset="19992">
-              <caret line="251" column="13" selection-start-line="251" selection-start-column="13" selection-end-line="251" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.2944882" vertical-offset="9116" max-vertical-offset="19992">
+              <caret line="455" column="47" selection-start-line="455" selection-start-column="47" selection-end-line="455" selection-end-column="47" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#7218#7742#0" expanded="true" />
                 <element signature="e#7727#7728#0" expanded="true" />
                 <element signature="e#8290#8461#0" expanded="true" />
+                <element signature="e#8450#8451#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -98,14 +99,14 @@
       </file>
       <file leaf-file-name="waypointeditor.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/waypointeditor.xml">
-          <provider selected="true" editor-type-id="android-designer">
-            <state />
-          </provider>
           <provider editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="231">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
+          </provider>
+          <provider selected="true" editor-type-id="android-designer">
+            <state />
           </provider>
         </entry>
       </file>
@@ -121,27 +122,27 @@
       </file>
       <file leaf-file-name="tabletlayout.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/tabletlayout.xml">
-          <provider selected="true" editor-type-id="android-designer">
-            <state />
-          </provider>
           <provider editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="3528" max-vertical-offset="4095">
               <caret line="168" column="12" selection-start-line="168" selection-start-column="12" selection-end-line="168" selection-end-column="12" />
               <folding />
             </state>
           </provider>
+          <provider selected="true" editor-type-id="android-designer">
+            <state />
+          </provider>
         </entry>
       </file>
       <file leaf-file-name="connectdialog.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/connectdialog.xml">
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="1785" max-vertical-offset="2142">
               <caret line="85" column="34" selection-start-line="85" selection-start-column="34" selection-end-line="85" selection-end-column="34" />
               <folding />
             </state>
+          </provider>
+          <provider editor-type-id="android-designer">
+            <state />
           </provider>
         </entry>
       </file>
@@ -1479,7 +1480,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -1592,8 +1592,9 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="AndroidView" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1611,7 +1612,7 @@
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="320095498c93c000" />
+    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="R32D3048WPV" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="Nexus_5_API_21_x86" />
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager2.WIDTH" value="335" />
     <property name="DEBUGGABLE_DEVICE" value="samsung-gt_p5210-320095498c93c000" />
@@ -1818,7 +1819,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298969" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1832,8 +1833,8 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29667813" sideWeight="0.46096256" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32912844" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.072164945" sideWeight="0.56631017" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.072164945" sideWeight="0.4331551" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19702177" sideWeight="0.56631017" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19702177" sideWeight="0.4331551" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.120855615" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Memory Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32875144" sideWeight="0.4331551" order="8" side_tool="true" content_ui="tabs" />
@@ -1901,6 +1902,7 @@
             <element signature="e#7218#7742#0" expanded="true" />
             <element signature="e#7727#7728#0" expanded="true" />
             <element signature="e#8290#8461#0" expanded="true" />
+            <element signature="e#8450#8451#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1971,6 +1973,7 @@
             <element signature="e#7218#7742#0" expanded="true" />
             <element signature="e#7727#7728#0" expanded="true" />
             <element signature="e#8290#8461#0" expanded="true" />
+            <element signature="e#8450#8451#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2056,6 +2059,7 @@
             <element signature="e#7218#7742#0" expanded="true" />
             <element signature="e#7727#7728#0" expanded="true" />
             <element signature="e#8290#8461#0" expanded="true" />
+            <element signature="e#8450#8451#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2129,6 +2133,7 @@
             <element signature="e#7218#7742#0" expanded="true" />
             <element signature="e#7727#7728#0" expanded="true" />
             <element signature="e#8290#8461#0" expanded="true" />
+            <element signature="e#8450#8451#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2165,6 +2170,7 @@
             <element signature="e#7218#7742#0" expanded="true" />
             <element signature="e#7727#7728#0" expanded="true" />
             <element signature="e#8290#8461#0" expanded="true" />
+            <element signature="e#8450#8451#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2328,13 +2334,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/platypuscontrolapp/TeleOpPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.74596775" vertical-offset="4611" max-vertical-offset="19992">
-          <caret line="251" column="13" selection-start-line="251" selection-start-column="13" selection-end-line="251" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.2944882" vertical-offset="9116" max-vertical-offset="19992">
+          <caret line="455" column="47" selection-start-line="455" selection-start-column="47" selection-end-line="455" selection-end-column="47" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#7218#7742#0" expanded="true" />
             <element signature="e#7727#7728#0" expanded="true" />
             <element signature="e#8290#8461#0" expanded="true" />
+            <element signature="e#8450#8451#0" expanded="true" />
           </folding>
         </state>
       </provider>
