@@ -18,7 +18,7 @@ import com.google.android.gms.maps.model.LatLng;
 
 public class Boat
 	{
-		private UdpVehicleServer server = null;
+        UdpVehicleServer server = null;
 		private String name;
 		private InetSocketAddress ipAddress;
 		private Twist tw = null;
@@ -35,6 +35,7 @@ public class Boat
 
 		public Boat()
 			{
+                server = new UdpVehicleServer();
 			}
 
 		public Boat(InetSocketAddress _ipAddress)
@@ -50,10 +51,9 @@ public class Boat
 				server.setVehicleService(a);
 			}
 
-		public InetSocketAddress getIpAddress()
-			{
-				return ipAddress;
-			}
+		public InetSocketAddress getIpAddress() {
+            return (InetSocketAddress) server.getVehicleService();
+        }
 
 		public void getPose()
 			{

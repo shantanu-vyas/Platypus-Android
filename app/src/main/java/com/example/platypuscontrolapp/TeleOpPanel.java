@@ -3,8 +3,11 @@ package com.example.platypuscontrolapp;
 import java.io.File;
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.net.SocketAddress;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -19,7 +22,9 @@ import org.jscience.geography.coordinates.crs.ReferenceEllipsoid;
 
 
 import edu.cmu.ri.crw.CrwNetworkUtils;
+
 import edu.cmu.ri.crw.VehicleServer;
+import edu.cmu.ri.crw.udp.UdpVehicleServer;
 import robotutils.Pose3D;
 import android.app.Activity;
 import android.content.Context;
@@ -157,6 +162,8 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
     public static boolean actual;
     public static Boat currentBoat;
     public static InetSocketAddress address;
+    public static SocketAddress newAddress;
+    public static String newaddressstring;
     public CheckBox autoBox;
     private final Object _waypointLock = new Object(); //deadlock?!??
     boolean failedwp = true;
@@ -209,28 +216,23 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
         });
 
         connectBox();
-
         loadWPFile.setOnClickListener(
                 new OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    try {
+                    @Override
+                    public void onClick(View view) {
+                        try {
 
-                        if(setWaypointsFromFile()==false) {
-                            failedwp = true;
+                            if (setWaypointsFromFile() == false) {
+                                failedwp = true;
 //
-                        }
-                        else
-                        {
-                            failedwp = false;
-                        }
-                    }
-                    catch(Exception e)
-                    {
+                            } else {
+                                failedwp = false;
+                            }
+                        } catch (Exception e) {
 
+                        }
                     }
-                }
-            });
+                });
 
         final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
         alertDialog.setTitle("Add Waypoints from File");
@@ -251,7 +253,7 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
                 alertDialog.dismiss();
             }
         });
-        alertDialog.show();
+        //alertDialog.show();
         //actual = true;
 
         /*
@@ -271,7 +273,7 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
                       .flat(true)
                       .rotation(270)
                       .title("Boat 1")
-                      .snippet(currentBoat.getIpAddress().toString())
+                              //.snippet(currentBoat.getIpAddress().toString())
                       .position(pHollowStartingPoint) //draws at panther hollow initially
 //                    .icon(BitmapDescriptorFactory
 //                    		.fromResource(R.drawable.airboat))
@@ -317,7 +319,7 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
                       // Perform action on click
                   }
               });
-              networkThread = new NetworkAsync().execute(); //launch networking asnyc task
+             networkThread = new NetworkAsync().execute(); //launch networking asnyc task
 //    }
 //
 //        /*
@@ -336,10 +338,10 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
 
 
 
-            ipAddressBox.setText(currentBoat.getIpAddress().toString());
+      //  ipAddressBox.setText(currentBoat.getIpAddress().toString());
             // setVehicle();
-            // test.setText(ConnectScreen.boat.getPose());
-            // connectScreen.boat.getPose();
+        // test.setText(ConnectScreen.boat.getPose());
+        // connectScreen.boat.getPose();
 
         //}
 
@@ -447,7 +449,11 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
                     }
                 }
             };
-            currentBoat.returnServer().addPoseListener(pl, null);
+
+            //thi sma cause location to not be updated
+            if (currentBoat.isConnected() == true) {
+                currentBoat.returnServer().addPoseListener(pl, null);
+            }
             testWaypointListener();
 
 
@@ -555,7 +561,13 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
                         .longitudeValue(SI.RADIAN) * 57.2957795));
                 // test.setText(String.valueOf(rot * 57.2957795));
                 boat2.setRotation((float) (rot * 57.2957795)); //set boats rotation!
+
+
+
+
+
                 if (firstTime == true) {
+
                     //testCamera(); // does the camera even work!?!?!?!?
 
                     /*
@@ -629,8 +641,7 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
                 .flat(true));
 
         lat = pHollowStartingPoint.latitude;
-        lon = pHollowStartingPoint.longitude;
-        map.setMyLocationEnabled(true);
+        lon = pHollowStartingPoint.longitude;        map.setMyLocationEnabled(true);
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(pHollowStartingPoint,
                 15));
         map.animateCamera(CameraUpdateFactory.zoomTo(17.0f));
@@ -846,6 +857,7 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
                     // int selectedId = simvsact.getCheckedRadioButtonId();
                     //int selectedOption = actvsim.getCheckedRadioButtonId();
                     //log.append("asdf" + selectedOption);
+                    //FindIP();
                     if (boat2 != null)
                     {boat2.remove();}
                     markerList = new ArrayList<Marker>();
@@ -856,16 +868,14 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
                 {
                     address = CrwNetworkUtils.toInetSocketAddress("127.0.0.1" + ":11411");
                 }
-                address = CrwNetworkUtils.toInetSocketAddress(textIpAddress + ":11411");
-                log.append("\n" + address.toString());
-                currentBoat = new Boat(address);
-                dialog.dismiss();
-                dialogClose();
+                    System.out.println(textIpAddress);
+                    address = CrwNetworkUtils.toInetSocketAddress(textIpAddress);
+                    FindIP();
+                    dialog.dismiss();
+                    dialogClose();
             }
         });
-
         dialog.show();
-
     }
 
     public static InetSocketAddress getAddress()
@@ -980,6 +990,39 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
         }
         return true;
     }
+public static void FindIP() {
+    address = CrwNetworkUtils.toInetSocketAddress(textIpAddress);
+    Thread thread = new Thread(){
+        public void run(){
+
+            currentBoat = new Boat();
+            UdpVehicleServer tempserver = new UdpVehicleServer();
+            currentBoat.returnServer().setRegistryService(address);
+            currentBoat.returnServer().getVehicleServices(new FunctionObserver<Map<SocketAddress, String>>() {
+                @Override
+                public void completed(Map<SocketAddress, String> socketAddressStringMap) {
+                    System.out.println("Completed");
+                    for (Map.Entry<SocketAddress, String> entry : socketAddressStringMap.entrySet()) {
+                        newaddressstring = entry.getKey().toString();
+                        System.out.println(newaddressstring);
+                        currentBoat.returnServer().setVehicleService(entry.getKey());
+
+
+                    }
+                }
+                @Override
+                public void failed(FunctionError functionError) {
+                    System.out.println("No Response");
+                }
+            });
+            //currentBoat = new Boat(CrwNetworkUtils.toInetSocketAddress(newaddressstring));
+            //System.out.println("Boat address" + currentBoat.getIpAddress());
+        }
+    };
+    thread.start();
+
+    //System.out.println("print here: " + newaddressstring);
+    //currentBoat = new Boat(CrwNetworkUtils.toInetSocketAddress(newaddressstring));
 }
-//
-//class
+}
+
