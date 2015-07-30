@@ -2,13 +2,6 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-25322fe6f68127091c275ad55c5d1a22ad81cdf1.jar" />
-    </item>
-    <item
         jar="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services\6.5.87\classes.jar"
         jumboMode="false"
         revision="20.0.0"
@@ -23,6 +16,41 @@
         <dex dex="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\build\intermediates\pre-dexed\debug\crwlib_core-dedc5b876cdb622e4dc7f6ac0f8da32534ba1615.jar" />
     </item>
     <item
+        jar="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\libs\mail.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="428e267abff0d10802ccde86b915da2c20471160">
+        <dex dex="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\build\intermediates\pre-dexed\debug\mail-9914cea220fbb98dcedf8a03882a0aea66bcf5b7.jar" />
+    </item>
+    <item
+        jar="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\build\intermediates\pre-dexed\debug\classes-6e94af24ef5d10abc2b66f35b90c366bfd4849ec.jar" />
+    </item>
+    <item
+        jar="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\libs\additionnal.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="bd9e8dc422bb8c8405359947fe9f4282b49f57f4">
+        <dex dex="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\build\intermediates\pre-dexed\debug\additionnal-d43df00b98edbe2a30926c01364071a43802eeb0.jar" />
+    </item>
+    <item
+        jar="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\libs\activation.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="d1257cbff6faa44c1f325ae0d9413522d4644383">
+        <dex dex="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\build\intermediates\pre-dexed\debug\activation-469bbff69f1946f09a4ce1c4aad1d1d8f5ebd9b8.jar" />
+    </item>
+    <item
+        jar="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-25322fe6f68127091c275ad55c5d1a22ad81cdf1.jar" />
+    </item>
+    <item
         jar="C:\Users\Shantanu\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
         jumboMode="false"
         revision="20.0.0"
@@ -35,13 +63,6 @@
         revision="20.0.0"
         sha1="3cf905c5fef64bc14c1ff3cdf19a2181e9069d1c">
         <dex dex="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\build\intermediates\pre-dexed\debug\jscience-3fec36335414c0ea9f4734c4fb132883747d0bec.jar" />
-    </item>
-    <item
-        jar="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\build\intermediates\pre-dexed\debug\classes-6e94af24ef5d10abc2b66f35b90c366bfd4849ec.jar" />
     </item>
 
 </items>

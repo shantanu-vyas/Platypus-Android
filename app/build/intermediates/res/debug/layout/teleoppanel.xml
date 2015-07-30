@@ -29,10 +29,13 @@
       android:layout_width="wrap_content">
 
     	<fragment
-    	    android:id="@id/map"
+    	    android:id="@+id/map"
     	    android:name="com.google.android.gms.maps.MapFragment"
     	    android:layout_width="match_parent"
-    	    android:layout_height="140dp" >
+
+            android:layout_height="140dp" >
+            <!--should be 140-->
+
 
         	<!-- android:layout_width="150dp"-->
     	</fragment>
@@ -68,12 +71,20 @@
         	/>		
     </RelativeLayout>
     <Button
-        android:id="@+id/waypointDeleteButton"
+    android:id="@+id/waypointDeleteButton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Delete All Waypoints"
+    />
+
+    <Button
+        android:id="@+id/waypointStartButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Delete All Waypoints"
+        android:text="Start Waypoints"
         />
-    
+
+
     <TextView
         android:id="@+id/getThrustProgress"
         android:layout_width="wrap_content"

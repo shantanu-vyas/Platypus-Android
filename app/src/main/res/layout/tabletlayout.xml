@@ -33,7 +33,7 @@
             android:id="@+id/map"
             android:name="com.google.android.gms.maps.MapFragment"
             android:layout_width="match_parent"
-            android:layout_height="400dp" >
+            android:layout_height="220dp" >
 
             <!-- android:layout_width="150dp"-->
         </fragment>
@@ -152,20 +152,29 @@
             android:layout_alignLeft="@+id/connectButton"
             android:layout_alignStart="@+id/connectButton" />
         <Button
-            android:id="@+id/waypointDeleteButton"
+            android:id="@+id/waypointStartButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Delete All Waypoints"
+            android:text="Start Waypoints"
 
             android:layout_alignBottom="@+id/rudderBar"
             android:layout_toRightOf="@+id/waypointButton"
             android:layout_toEndOf="@+id/waypointButton" />
+        <Button
+            android:id="@+id/waypointDeleteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete All Waypoints"
+            android:layout_toRightOf="@+id/waypointStartButton"
+            android:layout_toEndOf="@+id/waypointStartButton"
+            android:layout_alignBottom="@+id/waypointStartButton" />
+
 
         <CheckBox
             android:id="@+id/autonomousBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Autonomous"
+            android:text="Auto"
             android:layout_alignTop="@+id/rudderBar"
             android:layout_alignLeft="@+id/log"
             android:layout_alignStart="@+id/log"
