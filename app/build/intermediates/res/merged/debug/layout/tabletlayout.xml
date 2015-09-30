@@ -123,6 +123,15 @@
             android:layout_below="@+id/radioGroup"
             android:layout_alignStart="@+id/radioGroup" />
 
+        <ToggleButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/SensorStart"
+            android:layout_alignParentBottom="true"
+            android:layout_alignStart="@+id/SValue"
+            android:textOff="Show Sensorvalue"
+            android:textOn="Show Sensorvalue" />
+
     </RelativeLayout>
 
     <RelativeLayout

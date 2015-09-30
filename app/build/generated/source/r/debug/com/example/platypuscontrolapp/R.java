@@ -2018,10 +2018,11 @@ containing a value of this type.
     }
     public static final class id {
         public static final int Autonomous=0x7f0c007e;
-        public static final int Rellay=0x7f0c00af;
+        public static final int Rellay=0x7f0c00b0;
         public static final int SValue=0x7f0c00a6;
         public static final int Sensor1=0x7f0c00a4;
         public static final int Sensor2=0x7f0c00a5;
+        public static final int SensorStart=0x7f0c00a7;
         public static final int SensorType=0x7f0c00a1;
         public static final int SensorValue=0x7f0c00a2;
         public static final int action0=0x7f0c008e;
@@ -2039,7 +2040,7 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f0c005a;
         public static final int action_mode_bar_stub=0x7f0c0059;
         public static final int action_mode_close_button=0x7f0c0042;
-        public static final int action_settings=0x7f0c00b0;
+        public static final int action_settings=0x7f0c00b1;
         public static final int activity_chooser_view_content=0x7f0c0043;
         public static final int actualBoatRadio=0x7f0c0070;
         public static final int adjust_height=0x7f0c0018;
@@ -2047,7 +2048,7 @@ containing a value of this type.
         public static final int alertTitle=0x7f0c004d;
         public static final int always=0x7f0c001d;
         public static final int art=0x7f0c0085;
-        public static final int autonomousBox=0x7f0c00ad;
+        public static final int autonomousBox=0x7f0c00ae;
         public static final int beginning=0x7f0c0015;
         public static final int book_now=0x7f0c0033;
         public static final int buttonPanel=0x7f0c0053;
@@ -2062,7 +2063,7 @@ containing a value of this type.
         public static final int chronometer=0x7f0c0095;
         public static final int classic=0x7f0c003a;
         public static final int collapseActionView=0x7f0c001e;
-        public static final int connectButton=0x7f0c00a7;
+        public static final int connectButton=0x7f0c00a8;
         public static final int connecttype=0x7f0c0072;
         public static final int contentPanel=0x7f0c004e;
         public static final int controlScreenEnter=0x7f0c009d;
@@ -2106,9 +2107,9 @@ containing a value of this type.
         public static final int linlay=0x7f0c009c;
         public static final int listMode=0x7f0c000a;
         public static final int list_item=0x7f0c0047;
-        public static final int loadFileButton=0x7f0c00a9;
+        public static final int loadFileButton=0x7f0c00aa;
         public static final int location=0x7f0c0077;
-        public static final int log=0x7f0c00ae;
+        public static final int log=0x7f0c00af;
         public static final int logo_only=0x7f0c0039;
         public static final int map=0x7f0c0076;
         public static final int match_parent=0x7f0c0032;
@@ -2180,7 +2181,7 @@ containing a value of this type.
         public static final int text_wrapper=0x7f0c0087;
         public static final int thrustBar=0x7f0c007a;
         public static final int thrustBarTextView=0x7f0c0079;
-        public static final int tiltButton=0x7f0c00a8;
+        public static final int tiltButton=0x7f0c00a9;
         public static final int time=0x7f0c0094;
         public static final int title=0x7f0c0049;
         public static final int title_bar=0x7f0c0080;
@@ -2188,9 +2189,9 @@ containing a value of this type.
         public static final int topPanel=0x7f0c004b;
         public static final int up=0x7f0c0009;
         public static final int useLogo=0x7f0c0013;
-        public static final int waypointButton=0x7f0c00aa;
-        public static final int waypointDeleteButton=0x7f0c00ac;
-        public static final int waypointStartButton=0x7f0c00ab;
+        public static final int waypointButton=0x7f0c00ab;
+        public static final int waypointDeleteButton=0x7f0c00ad;
+        public static final int waypointStartButton=0x7f0c00ac;
         public static final int wifi=0x7f0c0074;
         public static final int withText=0x7f0c0021;
         public static final int wrap_content=0x7f0c0024;

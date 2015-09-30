@@ -15,6 +15,7 @@ com/google/android/gms/internal/zzfs.class
 com/google/android/gms/internal/zzfe.class
 javax/measure/unit/SI.class
 com/google/android/gms/maps/GoogleMap$OnMapClickListener.class
+edu/cmu/ri/crw/SensorListener.class
 -keep class android.support.multidex.MultiDexApplication {
 android/support/multidex/ZipUtil$CentralDirectory.class
 android/support/multidex/MultiDex$V19.class
@@ -45,8 +46,11 @@ org/jscience/geography/coordinates/crs/ReferenceEllipsoid.class
 -keep public class * extends android.app.backup.BackupAgent {
 javolution/lang/Immutable.class
 org/opengis/util/Cloneable.class
+com/example/platypuscontrolapp/TeleOpPanel$18.class
 com/example/platypuscontrolapp/TeleOpPanel.class
 -keep public class * extends java.lang.annotation.Annotation {
+com/example/platypuscontrolapp/TeleOpPanel$17.class
+com/example/platypuscontrolapp/TeleOpPanel$16.class
 android/support/multidex/MultiDex.class
 com/google/android/gms/maps/model/zze.class
 android/support/multidex/MultiDexExtractor$1.class

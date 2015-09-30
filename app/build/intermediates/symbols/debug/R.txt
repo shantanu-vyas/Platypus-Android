@@ -564,10 +564,11 @@ int drawable powered_by_google_dark 0x7f020082
 int drawable powered_by_google_light 0x7f020083
 int drawable streamnotfound 0x7f020084
 int id Autonomous 0x7f0c007e
-int id Rellay 0x7f0c00af
+int id Rellay 0x7f0c00b0
 int id SValue 0x7f0c00a6
 int id Sensor1 0x7f0c00a4
 int id Sensor2 0x7f0c00a5
+int id SensorStart 0x7f0c00a7
 int id SensorType 0x7f0c00a1
 int id SensorValue 0x7f0c00a2
 int id action0 0x7f0c008e
@@ -585,7 +586,7 @@ int id action_menu_presenter 0x7f0c0003
 int id action_mode_bar 0x7f0c005a
 int id action_mode_bar_stub 0x7f0c0059
 int id action_mode_close_button 0x7f0c0042
-int id action_settings 0x7f0c00b0
+int id action_settings 0x7f0c00b1
 int id activity_chooser_view_content 0x7f0c0043
 int id actualBoatRadio 0x7f0c0070
 int id adjust_height 0x7f0c0018
@@ -593,7 +594,7 @@ int id adjust_width 0x7f0c0019
 int id alertTitle 0x7f0c004d
 int id always 0x7f0c001d
 int id art 0x7f0c0085
-int id autonomousBox 0x7f0c00ad
+int id autonomousBox 0x7f0c00ae
 int id beginning 0x7f0c0015
 int id book_now 0x7f0c0033
 int id buttonPanel 0x7f0c0053
@@ -608,7 +609,7 @@ int id checkbox 0x7f0c0055
 int id chronometer 0x7f0c0095
 int id classic 0x7f0c003a
 int id collapseActionView 0x7f0c001e
-int id connectButton 0x7f0c00a7
+int id connectButton 0x7f0c00a8
 int id connecttype 0x7f0c0072
 int id contentPanel 0x7f0c004e
 int id controlScreenEnter 0x7f0c009d
@@ -652,9 +653,9 @@ int id line3 0x7f0c0097
 int id linlay 0x7f0c009c
 int id listMode 0x7f0c000a
 int id list_item 0x7f0c0047
-int id loadFileButton 0x7f0c00a9
+int id loadFileButton 0x7f0c00aa
 int id location 0x7f0c0077
-int id log 0x7f0c00ae
+int id log 0x7f0c00af
 int id logo_only 0x7f0c0039
 int id map 0x7f0c0076
 int id match_parent 0x7f0c0032
@@ -726,7 +727,7 @@ int id textSpacerNoButtons 0x7f0c0050
 int id text_wrapper 0x7f0c0087
 int id thrustBar 0x7f0c007a
 int id thrustBarTextView 0x7f0c0079
-int id tiltButton 0x7f0c00a8
+int id tiltButton 0x7f0c00a9
 int id time 0x7f0c0094
 int id title 0x7f0c0049
 int id title_bar 0x7f0c0080
@@ -734,9 +735,9 @@ int id title_template 0x7f0c004c
 int id topPanel 0x7f0c004b
 int id up 0x7f0c0009
 int id useLogo 0x7f0c0013
-int id waypointButton 0x7f0c00aa
-int id waypointDeleteButton 0x7f0c00ac
-int id waypointStartButton 0x7f0c00ab
+int id waypointButton 0x7f0c00ab
+int id waypointDeleteButton 0x7f0c00ad
+int id waypointStartButton 0x7f0c00ac
 int id wifi 0x7f0c0074
 int id withText 0x7f0c0021
 int id wrap_content 0x7f0c0024

@@ -105,6 +105,8 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
     ImageView cameraStream = null;
     Button loadWPFile = null;
 
+    TextView sensorData = null;
+    ToggleButton sensorvalueButton = null;
     boolean checktest;
     int a = 0;
 
@@ -133,6 +135,8 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
     double heading = Math.PI / 2.;
     int rudderTemp = 50;
     int thrustTemp = 0;
+    int old_rudder;
+    int old_thrust;
     double temp;
     double rot;
     String boatwaypoint;
@@ -182,7 +186,9 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
     public String wpstirng = "";
     public int channel =0;
     public double[] data;
-
+    SensorData Data;
+    public static String sensorV = "";
+    public int counter = 0;
 
     boolean dialogClosed = false;
 
@@ -213,6 +219,8 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
         loadWPFile = (Button)this.findViewById(R.id.loadFileButton);
         autoBox = (CheckBox) this.findViewById(R.id.autonomousBox);
         startWaypoints = (Button) this.findViewById(R.id.waypointStartButton);
+        sensorData = (TextView) this.findViewById(R.id.SValue);
+        sensorvalueButton = (ToggleButton) this.findViewById(R.id.SensorStart);
         thrust.setProgress(0); //initially set thrust to 0
         rudder.setProgress(50); //initially set rudder to center (50)
 
@@ -558,12 +566,13 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
             testWaypointListener();
             currentBoat.returnServer().setAutonomous(true, null);
             // setVelListener();
+            InitSensorData();
             while (true) { //constantly looping
                 if (currentBoat != null) {
                     if (System.currentTimeMillis() % 100 == 0
                             && oldTime != System.currentTimeMillis()) {
 
-
+                        counter++; // if counter == 10 (1000ms), update sensor value
                         if (currentBoat.isConnected() == true) {
                             connected = true;
                         }
@@ -571,11 +580,11 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
                             connected = false;
                         }
 
-                        if (thrust.getProgress() != thrustTemp) { //update velocity
+                        if (old_thrust != thrustTemp) { //update velocity
                             updateVelocity(currentBoat);
                         }
 
-                        if (rudder.getProgress() != rudderTemp) { //update rudder
+                        if (old_rudder != rudderTemp) { //update rudder
                             updateVelocity(currentBoat);
                         }
 
@@ -677,20 +686,22 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
                         // currentBoat.returnServer().setAutonomous(false,null);
 
 
-                        thrustTemp = thrust.getProgress();
-                        rudderTemp = rudder.getProgress();
+                        old_thrust = thrustTemp;
+                        old_rudder = rudderTemp;
                         oldTime = System.currentTimeMillis();
 
 
                         publishProgress();
 
                     }
-                    if(System.currentTimeMillis() % 1000 == 0
-                            && oldTime1 != System.currentTimeMillis()){
-                        SensorData();
-
-                        oldTime1 = System.currentTimeMillis();
-                    }
+//                    if(System.currentTimeMillis() % 1000 == 0
+//                            && oldTime1 != System.currentTimeMillis()){
+//                        //SensorData();
+//
+//
+//                        oldTime1 = System.currentTimeMillis();
+//                        publishProgress();
+//                    }
                 }
             }
         }
@@ -759,7 +770,14 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
                 ipAddressBox.setBackgroundColor(Color.RED);
             }
 
-
+            if(sensorvalueButton.isChecked() && counter == 10){
+                counter = 0;
+                sensorData.setText(sensorV);
+                sensorData.setBackgroundColor(Color.BLUE);
+                System.out.println("Reading SensorData");
+            }
+            thrustTemp = thrust.getProgress();
+            rudderTemp = rudder.getProgress();
             thrustProgress.setText(String.valueOf(fromProgressToRange(
                     thrust.getProgress(), THRUST_MIN, THRUST_MAX)));
             rudderProgress.setText(String.valueOf(fromProgressToRange(
@@ -1249,13 +1267,13 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
         thread.start();
     }
 
-    public void SensorData(){
+    public void InitSensorData(){
         while(currentBoat==null)
         {}
         SensorListener l = new SensorListener() {
             @Override
             public void receivedSensor(SensorData sensorData) {
-                SensorData Data = sensorData;
+                Data = sensorData;
                 data = Data.data;
                 channel = Data.channel;
             }
@@ -1263,7 +1281,8 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
         currentBoat.returnServer().addSensorListener(channel, l, new FunctionObserver<Void>() {
             @Override
             public void completed(Void aVoid) {
-
+               // sensorData.setText(Data.toString());
+                sensorV = Data.toString();
             }
 
             @Override
