@@ -23,6 +23,9 @@ import org.jscience.geography.coordinates.crs.ReferenceEllipsoid;
 
 import edu.cmu.ri.crw.CrwNetworkUtils;
 import edu.cmu.ri.crw.CrwNetworkUtils.*;
+import edu.cmu.ri.crw.SensorListener;
+import edu.cmu.ri.crw.VehicleServer;
+import edu.cmu.ri.crw.data.SensorData;
 import robotutils.Pose3D;
 import android.app.Activity;
 import android.content.Context;
@@ -46,6 +49,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -84,7 +88,7 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
     TextView ipAddressBox = null;
     TextView thrustProgress = null;
     TextView rudderProgress = null;
-    LinearLayout linlay = null;
+    RelativeLayout linlay = null;
     CheckBox autonomous = null;
     Button mapButton = null;
     static TextView testIP = null;
@@ -176,6 +180,9 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
 
     public int wpcount = 0;
     public String wpstirng = "";
+    public int channel =0;
+    public double[] data;
+
 
     boolean dialogClosed = false;
 
@@ -194,7 +201,7 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
         ipAddressBox = (TextView) this.findViewById(R.id.printIpAddress);
         thrust = (SeekBar) this.findViewById(R.id.thrustBar);
         rudder = (SeekBar) this.findViewById(R.id.rudderBar);
-        linlay = (LinearLayout) this.findViewById(R.id.linlay);
+        linlay = (RelativeLayout) this.findViewById(R.id.linlay);
         thrustProgress = (TextView) this.findViewById(R.id.getThrustProgress);
         rudderProgress = (TextView) this.findViewById(R.id.getRudderProgress);
         // test = (TextView) this.findViewById(R.id.test12);
@@ -507,6 +514,7 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
 
     private class NetworkAsync extends AsyncTask<String, Integer, String> {
         long oldTime = 0;
+        long oldTime1 = 0;
         String tester = "done";
         boolean connected = false;
         boolean firstTime = true;
@@ -525,6 +533,7 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
 //            }
             PoseListener pl = new PoseListener() { //gets the location of the boat
                 public void receivedPose(UtmPose upwcs) {
+
                     UtmPose _pose = upwcs.clone();
                     {
                         xValue = _pose.pose.getX();
@@ -545,8 +554,8 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
                 }
             };
 
-                currentBoat.returnServer().addPoseListener(pl, null);
-                testWaypointListener();
+            currentBoat.returnServer().addPoseListener(pl, null);
+            testWaypointListener();
             currentBoat.returnServer().setAutonomous(true, null);
             // setVelListener();
             while (true) { //constantly looping
@@ -577,14 +586,14 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
                             stopWaypoints = false;
                         }
 
-                   //     if (waypointList.size() > 0 && isCurrentWaypointDone == false)
+                        //     if (waypointList.size() > 0 && isCurrentWaypointDone == false)
 //                        {
 //                            System.out.println("wplist");
 //                            for(int i = 0; i < waypointList.size(); i++)
 //                            {
 //                             System.out.println(waypointList.get(i).toString());
 //                            }
-                //        }
+                        //        }
 
 //                                WaypointListener wplisten = new WaypointListener() {
 //                            public void waypointUpdate(WaypointState ws) {
@@ -675,6 +684,12 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
 
                         publishProgress();
 
+                    }
+                    if(System.currentTimeMillis() % 1000 == 0
+                            && oldTime1 != System.currentTimeMillis()){
+                        SensorData();
+
+                        oldTime1 = System.currentTimeMillis();
                     }
                 }
             }
@@ -1126,7 +1141,7 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
         }
         return true;
     }
-//    public static void FindIP() {
+    //    public static void FindIP() {
 //        address = CrwNetworkUtils.toInetSocketAddress(textIpAddress);
 //        System.out.println(textIpAddress);
 //        try
@@ -1178,50 +1193,50 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
 //        //System.out.println("print here: " + newaddressstring);
 //        //currentBoat = new Boat(CrwNetworkUtils.toInetSocketAddress(newaddressstring));
 //    }
-public static void FindIP() {
-    address = CrwNetworkUtils.toInetSocketAddress(textIpAddress+":6077");
-    Thread thread = new Thread(){
-        public void run(){
+    public static void FindIP() {
+        address = CrwNetworkUtils.toInetSocketAddress(textIpAddress+":6077");
+        Thread thread = new Thread(){
+            public void run(){
 
-            currentBoat = new Boat();
-            UdpVehicleServer tempserver = new UdpVehicleServer();
-            currentBoat.returnServer().setRegistryService(address);
-            currentBoat.returnServer().getVehicleServices(new FunctionObserver<Map<SocketAddress, String>>() {
-                @Override
-                public void completed(Map<SocketAddress, String> socketAddressStringMap) {
-                    System.out.println("Completed");
-                    for (Map.Entry<SocketAddress, String> entry : socketAddressStringMap.entrySet()) {
-                        //newaddressstring = entry.getKey().toString();
-                        //System.out.println(newaddressstring);
-                        currentBoat.returnServer().setVehicleService(entry.getKey());
+                currentBoat = new Boat();
+                UdpVehicleServer tempserver = new UdpVehicleServer();
+                currentBoat.returnServer().setRegistryService(address);
+                currentBoat.returnServer().getVehicleServices(new FunctionObserver<Map<SocketAddress, String>>() {
+                    @Override
+                    public void completed(Map<SocketAddress, String> socketAddressStringMap) {
+                        System.out.println("Completed");
+                        for (Map.Entry<SocketAddress, String> entry : socketAddressStringMap.entrySet()) {
+                            //newaddressstring = entry.getKey().toString();
+                            //System.out.println(newaddressstring);
+                            currentBoat.returnServer().setVehicleService(entry.getKey());
 
-                        System.out.println(entry.getKey().toString());
-                        System.out.println(entry.getValue().toString());
+                            System.out.println(entry.getKey().toString());
+                            System.out.println(entry.getValue().toString());
 
+                        }
                     }
-                }
-                @Override
-                public void failed(FunctionError functionError) {
-                    System.out.println("No Response");
-                }
-            });
-            //currentBoat = new Boat(CrwNetworkUtils.toInetSocketAddress(newaddressstring));
-            //System.out.println("Boat address" + currentBoat.getIpAddress());
-        }
-    };
-    thread.start();
+                    @Override
+                    public void failed(FunctionError functionError) {
+                        System.out.println("No Response");
+                    }
+                });
+                //currentBoat = new Boat(CrwNetworkUtils.toInetSocketAddress(newaddressstring));
+                //System.out.println("Boat address" + currentBoat.getIpAddress());
+            }
+        };
+        thread.start();
 
-    //System.out.println("print here: " + newaddressstring);
-    //currentBoat = new Boat(CrwNetworkUtils.toInetSocketAddress(newaddressstring));
+        //System.out.println("print here: " + newaddressstring);
+        //currentBoat = new Boat(CrwNetworkUtils.toInetSocketAddress(newaddressstring));
 
-}
+    }
     public void SendEmail()
     {
         Thread thread = new Thread() {
             public void run() {
                 Email mail = new Email("platypuslocation@gmail.com", "airboats");
                 try {
-                 //   mail.sendMail("jeffboat", wpstirng, "shantanu@gmail.com", "platypuslocation@gmail.com");
+                    //   mail.sendMail("jeffboat", wpstirng, "shantanu@gmail.com", "platypuslocation@gmail.com");
                 }
                 catch(Exception e)
                 {
@@ -1233,6 +1248,48 @@ public static void FindIP() {
         };
         thread.start();
     }
+
+    public void SensorData(){
+        while(currentBoat==null)
+        {}
+        SensorListener l = new SensorListener() {
+            @Override
+            public void receivedSensor(SensorData sensorData) {
+                SensorData Data = sensorData;
+                data = Data.data;
+                channel = Data.channel;
+            }
+        };
+        currentBoat.returnServer().addSensorListener(channel, l, new FunctionObserver<Void>() {
+            @Override
+            public void completed(Void aVoid) {
+
+            }
+
+            @Override
+            public void failed(FunctionError functionError) {
+
+            }
+        });
+
+        Thread thread = new Thread(){
+
+        };
+        thread.start();
+    }
+  //  public void InitSensor()
+  //  {
+   //     while(currentBoat == null)
+   //     {}
+
+     //   Thread thread = new Thread()
+       // {
+            //currentboat.returnserver().addsensorlistener(chan,asdf,new functionobsver...
+            // void completed(String data)
+         //   {}}
+             // sensortext.setText(data);currentBoat.returnserver().addSensorListner()
+        //});
+   // }
 }
 //
 //class

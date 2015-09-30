@@ -3,6 +3,7 @@
     android:versionCode="1"
     android:versionName="1.0" 
     package="com.example.platypuscontrolapp">
+
  	    
     <uses-sdk
         android:minSdkVersion="11"
@@ -15,7 +16,8 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
         android:logo="@drawable/logo"
-		android:configChanges="orientation"> <!-- lock orienation so async task doesnt die (shitty workaround) -->
+		android:configChanges="orientation"
+        android:name="android.support.multidex.MultiDexApplication"> <!-- lock orienation so async task doesnt die (shitty workaround) -->
 
 
         <!--<activity-->

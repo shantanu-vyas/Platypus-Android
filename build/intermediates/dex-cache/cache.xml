@@ -2,67 +2,228 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services\6.5.87\classes.jar"
+        jar="F:\AndriodProject\Platypus-Android\app\libs\additionnal.jar"
         jumboMode="false"
-        revision="20.0.0"
-        sha1="dd9247ea0fabe8ee479638c4b4a23e93752be256">
-        <dex dex="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\build\intermediates\pre-dexed\debug\classes-79861aa9e98deea0f1327f771555472122f9908a.jar" />
-    </item>
-    <item
-        jar="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\libs\crwlib_core.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="f1ec0842283e928ed04fdaf3801bb7d117ec470a">
-        <dex dex="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\build\intermediates\pre-dexed\debug\crwlib_core-dedc5b876cdb622e4dc7f6ac0f8da32534ba1615.jar" />
-    </item>
-    <item
-        jar="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\libs\mail.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="428e267abff0d10802ccde86b915da2c20471160">
-        <dex dex="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\build\intermediates\pre-dexed\debug\mail-9914cea220fbb98dcedf8a03882a0aea66bcf5b7.jar" />
-    </item>
-    <item
-        jar="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\build\intermediates\pre-dexed\debug\classes-6e94af24ef5d10abc2b66f35b90c366bfd4849ec.jar" />
-    </item>
-    <item
-        jar="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\libs\additionnal.jar"
-        jumboMode="false"
-        revision="20.0.0"
+        revision="22.0.0"
         sha1="bd9e8dc422bb8c8405359947fe9f4282b49f57f4">
-        <dex dex="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\build\intermediates\pre-dexed\debug\additionnal-d43df00b98edbe2a30926c01364071a43802eeb0.jar" />
+        <dex dex="F:\AndriodProject\Platypus-Android\app\build\intermediates\pre-dexed\debug\additionnal-eb802f897e7a0c9c9cbbdd6ffa24cd8e71d5161f.jar" />
     </item>
     <item
-        jar="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\libs\activation.jar"
+        jar="F:\AndriodProject\Platypus-Android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\7.8.0\jars\classes.jar"
         jumboMode="false"
-        revision="20.0.0"
-        sha1="d1257cbff6faa44c1f325ae0d9413522d4644383">
-        <dex dex="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\build\intermediates\pre-dexed\debug\activation-469bbff69f1946f09a4ce1c4aad1d1d8f5ebd9b8.jar" />
+        revision="22.0.0"
+        sha1="c0c912d58c9468b1f9d9769c8975afdf2c85d681">
+        <dex dex="F:\AndriodProject\Platypus-Android\app\build\intermediates\pre-dexed\debug\classes-909081dde2384bffd1aadd417c3ab54111eff74c.jar" />
     </item>
     <item
-        jar="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
+        jar="F:\Andriod SDK\extras\android\m2repository\com\android\support\support-annotations\22.2.0\support-annotations-22.2.0.jar"
         jumboMode="false"
-        revision="20.0.0"
-        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-25322fe6f68127091c275ad55c5d1a22ad81cdf1.jar" />
+        revision="22.0.0"
+        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
+        <dex dex="F:\AndriodProject\Platypus-Android\app\build\intermediates\pre-dexed\debug\support-annotations-22.2.0-d4c01e5c727000d9c68807ba5151ccb578e08bc5.jar" />
     </item>
     <item
-        jar="C:\Users\Shantanu\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
+        jar="F:\AndriodProject\Platypus-Android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\7.8.0\jars\classes.jar"
         jumboMode="false"
-        revision="20.0.0"
-        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
-        <dex dex="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-c8e20010fa01d4b728f406e18d88c265bb67dc8c.jar" />
+        revision="22.0.0"
+        sha1="1ff30fa49c07a08c3035d7218a3efebf5680d522">
+        <dex dex="F:\AndriodProject\Platypus-Android\app\build\intermediates\pre-dexed\debug\classes-3b8e8401f267588fe67aeadcf9a713bb995d8285.jar" />
     </item>
     <item
-        jar="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\libs\jscience.jar"
+        jar="F:\AndriodProject\Platypus-Android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\7.8.0\jars\classes.jar"
         jumboMode="false"
-        revision="20.0.0"
+        revision="22.0.0"
+        sha1="130b32ed466fa0f63efd4c7d6250ccd2ed506790">
+        <dex dex="F:\AndriodProject\Platypus-Android\app\build\intermediates\pre-dexed\debug\classes-7aab2cdd0cb130dd569e6e401671b74e1cf3e571.jar" />
+    </item>
+    <item
+        jar="F:\AndriodProject\Platypus-Android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-safetynet\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="166e458ee3b5fb5fcff0f936df3f3a788e6c54f3">
+        <dex dex="F:\AndriodProject\Platypus-Android\app\build\intermediates\pre-dexed\debug\classes-99ad8a9db4ec24c2010b642542df41133ff788e2.jar" />
+    </item>
+    <item
+        jar="F:\AndriodProject\Platypus-Android\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="dcf8c83c3dead00a6c4fe313e95f7aaca20dc641">
+        <dex dex="F:\AndriodProject\Platypus-Android\app\build\intermediates\pre-dexed\debug\classes-43938f7cf833c1b6f99b59e89de1b050e3b2c027.jar" />
+    </item>
+    <item
+        jar="F:\AndriodProject\Platypus-Android\app\libs\crwlib_core.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="f1ec0842283e928ed04fdaf3801bb7d117ec470a">
+        <dex dex="F:\AndriodProject\Platypus-Android\app\build\intermediates\pre-dexed\debug\crwlib_core-944bac253b47888be636e02f0c902c4e063423e0.jar" />
+    </item>
+    <item
+        jar="F:\AndriodProject\Platypus-Android\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="73753982da6bde518f3a4c6b372749981d14d1a0">
+        <dex dex="F:\AndriodProject\Platypus-Android\app\build\intermediates\pre-dexed\debug\classes-48058e28846d8a0f56c8004c4fa424a2186c169c.jar" />
+    </item>
+    <item
+        jar="F:\AndriodProject\Platypus-Android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-plus\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="2491ae1b2a848af1f4f0c795f3117c1bd6a1989f">
+        <dex dex="F:\AndriodProject\Platypus-Android\app\build\intermediates\pre-dexed\debug\classes-bdcd8733d23f6c782da9715b1c37c64c53dc2a33.jar" />
+    </item>
+    <item
+        jar="F:\AndriodProject\Platypus-Android\app\libs\jscience.jar"
+        jumboMode="false"
+        revision="22.0.0"
         sha1="3cf905c5fef64bc14c1ff3cdf19a2181e9069d1c">
-        <dex dex="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\build\intermediates\pre-dexed\debug\jscience-3fec36335414c0ea9f4734c4fb132883747d0bec.jar" />
+        <dex dex="F:\AndriodProject\Platypus-Android\app\build\intermediates\pre-dexed\debug\jscience-95423b9852f6a7ce432f249473b4a541fa4bbba1.jar" />
+    </item>
+    <item
+        jar="F:\AndriodProject\Platypus-Android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="77a9dcb5f8b1dba36aacaa9c150eb0942dbea158">
+        <dex dex="F:\AndriodProject\Platypus-Android\app\build\intermediates\pre-dexed\debug\classes-ae231701630226260e51c8788d19c5b18292c5c9.jar" />
+    </item>
+    <item
+        jar="F:\AndriodProject\Platypus-Android\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.2.0\jars\libs\internal_impl-22.2.0.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="0632f06970823b7e3436f649bfa65b47035c91d0">
+        <dex dex="F:\AndriodProject\Platypus-Android\app\build\intermediates\pre-dexed\debug\internal_impl-22.2.0-cd15f6a12cce865d36fc8dd4f8ed9ac2ccb3186f.jar" />
+    </item>
+    <item
+        jar="F:\AndriodProject\Platypus-Android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wallet\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="c2ac04c5b232f6f0658ee4f1c13be09cd76406e2">
+        <dex dex="F:\AndriodProject\Platypus-Android\app\build\intermediates\pre-dexed\debug\classes-66b35411f2bcc2da23ff5236d4e372465cf544ae.jar" />
+    </item>
+    <item
+        jar="F:\AndriodProject\Platypus-Android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-vision\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="b99f0b78bbcb76b915bc6529a83b65d4d46990dd">
+        <dex dex="F:\AndriodProject\Platypus-Android\app\build\intermediates\pre-dexed\debug\classes-eccd1acde6e3ddf230c41bfe9ddaf9561a4284bd.jar" />
+    </item>
+    <item
+        jar="F:\AndriodProject\Platypus-Android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appstate\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="edea92852b40eee716e910af8dad9eeaa58fb0e1">
+        <dex dex="F:\AndriodProject\Platypus-Android\app\build\intermediates\pre-dexed\debug\classes-ed21fc5a4f469102347f2d0746beeea666c8d14b.jar" />
+    </item>
+    <item
+        jar="F:\AndriodProject\Platypus-Android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="c756d14e99d39471e99013a1e8fd2f3813ed42bf">
+        <dex dex="F:\AndriodProject\Platypus-Android\app\build\intermediates\pre-dexed\debug\classes-75330174f743c5026a900870e820523f25ec0f2f.jar" />
+    </item>
+    <item
+        jar="F:\AndriodProject\Platypus-Android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-panorama\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="6e85edfc9b5346d216e50ccef1f8e825504144a3">
+        <dex dex="F:\AndriodProject\Platypus-Android\app\build\intermediates\pre-dexed\debug\classes-0c6264367fd4f5011447f89d701d7ae81d05696e.jar" />
+    </item>
+    <item
+        jar="F:\AndriodProject\Platypus-Android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="e23ea11124bb700eeddd4ab7aa848c615f493850">
+        <dex dex="F:\AndriodProject\Platypus-Android\app\build\intermediates\pre-dexed\debug\classes-b15b3e3238e42ddd43dfac983f1ea641e0ad10d3.jar" />
+    </item>
+    <item
+        jar="F:\AndriodProject\Platypus-Android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-games\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="2e24e5f1b11170163028277de63f709e42525db4">
+        <dex dex="F:\AndriodProject\Platypus-Android\app\build\intermediates\pre-dexed\debug\classes-1264ca5659ef948177417af6e4c96e19e70532c1.jar" />
+    </item>
+    <item
+        jar="F:\AndriodProject\Platypus-Android\app\libs\mail.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="428e267abff0d10802ccde86b915da2c20471160">
+        <dex dex="F:\AndriodProject\Platypus-Android\app\build\intermediates\pre-dexed\debug\mail-b9f0268a16e6313a2055f187401b8edbd5b3d116.jar" />
+    </item>
+    <item
+        jar="F:\AndriodProject\Platypus-Android\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\jars\libs\internal_impl-22.2.0.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
+        <dex dex="F:\AndriodProject\Platypus-Android\app\build\intermediates\pre-dexed\debug\internal_impl-22.2.0-8ca9f6a46403ba9b7de9d71d987d91e1c46d5cb2.jar" />
+    </item>
+    <item
+        jar="F:\AndriodProject\Platypus-Android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appinvite\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="98137c4d12c50923f5809852b1ef4d1c4e162081">
+        <dex dex="F:\AndriodProject\Platypus-Android\app\build\intermediates\pre-dexed\debug\classes-43f937a7ce79cd6fa4ed5ad91ea2b7f408d255b0.jar" />
+    </item>
+    <item
+        jar="F:\AndriodProject\Platypus-Android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-drive\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="42a1ee578b62fd1bd28b3307a679dc9ba0791587">
+        <dex dex="F:\AndriodProject\Platypus-Android\app\build\intermediates\pre-dexed\debug\classes-8cb25eea5b08d2a228eaad0dba5097889142b103.jar" />
+    </item>
+    <item
+        jar="F:\AndriodProject\Platypus-Android\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
+        <dex dex="F:\AndriodProject\Platypus-Android\app\build\intermediates\pre-dexed\debug\classes-15a7e2a108e82717e86b4defaa7ff7cfab83425d.jar" />
+    </item>
+    <item
+        jar="F:\AndriodProject\Platypus-Android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-identity\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="d11330ea68c0d964d30d5caed1f27e6b1488b189">
+        <dex dex="F:\AndriodProject\Platypus-Android\app\build\intermediates\pre-dexed\debug\classes-51fd9913712be3df8d118ca80820e4adad639742.jar" />
+    </item>
+    <item
+        jar="F:\AndriodProject\Platypus-Android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="c5cafb324568d954780abb858c25db7ce675ab3c">
+        <dex dex="F:\AndriodProject\Platypus-Android\app\build\intermediates\pre-dexed\debug\classes-ed6f1d66f5be31fa88b603890f85673b77f4e999.jar" />
+    </item>
+    <item
+        jar="F:\AndriodProject\Platypus-Android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="cb6fab7a71fa9ec1f483d44c5fca65ab469d8aca">
+        <dex dex="F:\AndriodProject\Platypus-Android\app\build\intermediates\pre-dexed\debug\classes-93c559b473a1a22d00fe9efee614d681ef332448.jar" />
+    </item>
+    <item
+        jar="F:\AndriodProject\Platypus-Android\app\libs\activation.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="d1257cbff6faa44c1f325ae0d9413522d4644383">
+        <dex dex="F:\AndriodProject\Platypus-Android\app\build\intermediates\pre-dexed\debug\activation-e115df0ed1a8adaf284877e43ad169cda9dc83fb.jar" />
+    </item>
+    <item
+        jar="F:\AndriodProject\Platypus-Android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="0124ce31248c0e8acfa2b28283c6d1a4d76e73d2">
+        <dex dex="F:\AndriodProject\Platypus-Android\app\build\intermediates\pre-dexed\debug\classes-e2fd757b8a9ca515d3ad853cb65623c9cdfdde18.jar" />
+    </item>
+    <item
+        jar="F:\AndriodProject\Platypus-Android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-nearby\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="adebe28e0c0c05d34a3bfd76f3275bf4d8ff87b6">
+        <dex dex="F:\AndriodProject\Platypus-Android\app\build\intermediates\pre-dexed\debug\classes-5750dcf62d9806e609242a39f0df5dba4a67ccca.jar" />
+    </item>
+    <item
+        jar="F:\AndriodProject\Platypus-Android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="4a135d56554069e5d0ff80e3220e887e57146ee5">
+        <dex dex="F:\AndriodProject\Platypus-Android\app\build\intermediates\pre-dexed\debug\classes-e45e38152a21e2b5fa8d50dfc761aa1733015506.jar" />
     </item>
 
 </items>
