@@ -188,8 +188,8 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
     public double[] data;
     SensorData Data;
     public static String sensorV = "";
-    public int counter = 0;
-
+    public static int counter = 0;
+    public TextView sensorValueBox;
     boolean dialogClosed = false;
 
     public static TextView log;
@@ -221,6 +221,7 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
         startWaypoints = (Button) this.findViewById(R.id.waypointStartButton);
         sensorData = (TextView) this.findViewById(R.id.SValue);
         sensorvalueButton = (ToggleButton) this.findViewById(R.id.SensorStart);
+        sensorValueBox = (TextView) this.findViewById(R.id.SensorValue);
         thrust.setProgress(0); //initially set thrust to 0
         rudder.setProgress(50); //initially set rudder to center (50)
 
@@ -770,11 +771,14 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
                 ipAddressBox.setBackgroundColor(Color.RED);
             }
 
-            if(sensorvalueButton.isChecked() && counter == 10){
+            if(sensorvalueButton.isChecked() && counter > 10){
                 counter = 0;
                 sensorData.setText(sensorV);
-                sensorData.setBackgroundColor(Color.BLUE);
+                sensorValueBox.setBackgroundColor(Color.GREEN);
                 System.out.println("Reading SensorData");
+            }
+            if(!sensorvalueButton.isChecked()){
+                sensorValueBox.setBackgroundColor(Color.BLUE);
             }
             thrustTemp = thrust.getProgress();
             rudderTemp = rudder.getProgress();
@@ -1270,7 +1274,7 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
     public void InitSensorData(){
         while(currentBoat==null)
         {}
-        SensorListener l = new SensorListener() {
+        final SensorListener l = new SensorListener() {
             @Override
             public void receivedSensor(SensorData sensorData) {
                 Data = sensorData;
@@ -1281,15 +1285,33 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
         currentBoat.returnServer().addSensorListener(channel, l, new FunctionObserver<Void>() {
             @Override
             public void completed(Void aVoid) {
-               // sensorData.setText(Data.toString());
-                sensorV = Data.toString();
+
             }
 
             @Override
             public void failed(FunctionError functionError) {
 
             }
-        });
+        } );
+
+
+
+//            @Override
+//            public void completed(Void aVoid) {
+//               // sensorData.setText(Data.toString());
+//                if(Data.toString()==null){
+//                    sensorV = "Waiting...";
+//                }
+//                else {
+//                    sensorV = Data.toString();
+//                }
+//            }
+//
+//            @Override
+//            public void failed(FunctionError functionError) {
+//
+//            }
+//        });
 
         Thread thread = new Thread(){
 

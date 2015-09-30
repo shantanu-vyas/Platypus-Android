@@ -112,6 +112,8 @@
             android:layout_height="wrap_content"
             android:text="SensorValue"
             android:id="@+id/SensorValue"
+            android:textColor="@color/green"
+            android:background="@color/cyan"
             android:layout_centerVertical="true"
             android:layout_alignEnd="@+id/SensorType" />
 
@@ -120,6 +122,7 @@
             android:layout_height="wrap_content"
             android:text="0"
             android:id="@+id/SValue"
+
             android:layout_below="@+id/radioGroup"
             android:layout_alignStart="@+id/radioGroup" />
 
