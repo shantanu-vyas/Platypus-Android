@@ -4,6 +4,7 @@ import java.net.InetSocketAddress;
 
 import edu.cmu.ri.crw.FunctionObserver;
 import edu.cmu.ri.crw.PoseListener;
+import edu.cmu.ri.crw.SensorListener;
 import edu.cmu.ri.crw.WaypointListener;
 import edu.cmu.ri.crw.data.Twist;
 import edu.cmu.ri.crw.data.Utm;

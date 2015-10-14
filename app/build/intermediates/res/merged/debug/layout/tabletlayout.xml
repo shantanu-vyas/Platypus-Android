@@ -68,6 +68,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="150dp"
+
         android:layout_below="@+id/relativeLayout2"
         android:layout_alignParentStart="true">
 
@@ -77,35 +78,8 @@
             android:layout_height="wrap_content"
             android:text="SensorType"
             android:id="@+id/SensorType"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="360dp"
+            android:layout_marginStart="251dp"
             android:paddingTop="5dp" />
-
-        <RadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/SensorType"
-            android:layout_marginStart="50dp"
-            android:layout_above="@+id/SensorValue"
-            android:id="@+id/radioGroup">
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sensor 1"
-                android:id="@+id/Sensor1"
-                android:enabled="true"
-                android:checked="true" />
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sensor 2"
-                android:id="@+id/Sensor2"
-                android:layout_gravity="left" />
-        </RadioGroup>
 
         <TextView
             android:layout_width="wrap_content"
@@ -117,23 +91,103 @@
             android:layout_centerVertical="true"
             android:layout_alignEnd="@+id/SensorType" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0"
-            android:id="@+id/SValue"
-
-            android:layout_below="@+id/radioGroup"
-            android:layout_alignStart="@+id/radioGroup" />
-
         <ToggleButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/SensorStart"
-            android:layout_alignParentBottom="true"
-            android:layout_alignStart="@+id/SValue"
             android:textOff="Show Sensorvalue"
-            android:textOn="Show Sensorvalue" />
+            android:textOn="Show Sensorvalue"
+            android:layout_alignParentBottom="true"
+            android:layout_toStartOf="@+id/sensor1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sensor 1"
+            android:id="@+id/sensor1"
+            android:layout_toEndOf="@id/SensorType"
+            android:layout_marginLeft="20dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sensor 2"
+            android:id="@+id/sensor2"
+            android:layout_alignTop="@+id/sensor1"
+            android:layout_toEndOf="@+id/sensor1"
+            android:layout_marginStart="73dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sensor 3"
+            android:id="@+id/sensor3"
+            android:layout_marginStart="90dp"
+            android:layout_alignTop="@+id/sensor2"
+            android:layout_toEndOf="@+id/sensor2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/sensortype1"
+            android:textStyle="bold"
+            android:text="Null"
+            android:layout_alignStart="@+id/sensor1"
+            android:layout_below="@+id/sensor1"
+            android:layout_marginTop="20dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/sensortype2"
+            android:textStyle="bold"
+            android:text="Null"
+            android:layout_alignStart="@+id/sensor2"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/sensor2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/sensortype3"
+            android:textStyle="bold"
+            android:text="Null"
+            android:layout_alignTop="@+id/sensortype2"
+            android:layout_alignStart="@+id/sensor3" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="0.0"
+            android:id="@+id/SValue1"
+            android:layout_alignTop="@+id/SensorStart"
+            android:layout_alignStart="@+id/sensortype1"
+            android:textSize="18dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="0.0"
+            android:id="@+id/SValue2"
+            android:layout_alignTop="@+id/SValue1"
+            android:layout_alignStart="@+id/sensortype2"
+            android:textSize="18dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="0.0"
+            android:id="@+id/SValue3"
+            android:layout_alignTop="@+id/SValue2"
+            android:layout_alignStart="@+id/sensortype3"
+            android:textSize="18dp" />
+
 
     </RelativeLayout>
 
@@ -193,7 +247,7 @@
             android:id="@+id/getRudderProgress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="50"
+            android:text="0"
             android:paddingTop="20dp"
             android:paddingLeft="17dp"
             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -253,23 +307,23 @@
             android:layout_alignBottom="@+id/waypointStartButton" />
 
 
-        <CheckBox
-            android:id="@+id/autonomousBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Auto"
-            android:layout_alignTop="@+id/rudderBar"
-            android:layout_alignLeft="@+id/log"
-            android:layout_alignStart="@+id/log"
-            android:checked="false" />
-        <TextView
-            android:id="@+id/log"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/tiltButton"
-            android:layout_toRightOf="@id/waypointDeleteButton"/>
-
     </RelativeLayout>
+
+    <CheckBox
+        android:id="@+id/autonomousBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Auto"
+        android:checked="false"
+        android:layout_alignBottom="@+id/relativeLayout2"
+        android:layout_toEndOf="@+id/relativeLayout2"
+        android:layout_toRightOf="@+id/relativeLayout2" />
+    <TextView
+        android:id="@+id/log"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/autonomousBox"
+        android:layout_toRightOf="@+id/relativeLayout2" />
 
 
     <!--     <Button
@@ -278,4 +332,4 @@
         android:layout_height="24dp"
         android:text="Open in Map" />
     -->
-</RelativeLayout><!-- From: file:/F:/AndriodProject/Platypus-Android/app/src/main/res/layout/tabletlayout.xml -->
+</RelativeLayout><!-- From: file:/Users/zeshengxi/AndroidStudio/Platypus-Android/app/src/main/res/layout/tabletlayout.xml -->
