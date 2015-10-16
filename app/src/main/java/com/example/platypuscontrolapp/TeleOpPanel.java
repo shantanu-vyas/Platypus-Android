@@ -33,6 +33,7 @@ import android.app.Activity;
 import android.content.Context;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -1367,19 +1368,16 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
 
 
     }
-  //  public void InitSensor()
-  //  {
-   //     while(currentBoat == null)
-   //     {}
+//  Make return button same as home button
+    @Override
+    public void onBackPressed() {
+        //Log.d("CDA", "onBackPressed Called");
+        Intent setIntent = new Intent(Intent.ACTION_MAIN);
+        setIntent.addCategory(Intent.CATEGORY_HOME);
+        setIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(setIntent);
+    }
 
-     //   Thread thread = new Thread()
-       // {
-            //currentboat.returnserver().addsensorlistener(chan,asdf,new functionobsver...
-            // void completed(String data)
-         //   {}}
-             // sensortext.setText(data);currentBoat.returnserver().addSensorListner()
-        //});
-   // }
 }
 //
 //class
