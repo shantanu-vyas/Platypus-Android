@@ -22,33 +22,7 @@
         android:gravity="center_horizontal|center_vertical"
         android:text="IP Address:"
         android:textColor="@color/green" />
-    
-    
-	<RelativeLayout
-	  android:layout_height="wrap_content" 
-      android:layout_width="wrap_content">
 
-    	<fragment
-    	    android:id="@+id/map"
-    	    android:name="com.google.android.gms.maps.MapFragment"
-    	    android:layout_width="match_parent"
-
-            android:layout_height="140dp" >
-            <!--should be 140-->
-
-
-        	<!-- android:layout_width="150dp"-->
-    	</fragment>
-    	<!-- <ImageView
-        	android:id="@+id/cameraStream"
-        	android:layout_width="fill_parent"
-        	android:layout_height="110dp"
-        	
-        	android:layout_toRightOf="@id/map" />-->
-        	<!-- android:src="@drawable/streamnotfound" -->
-        	
-    </RelativeLayout>
-    
 	
    <RelativeLayout
       android:layout_height="wrap_content" 

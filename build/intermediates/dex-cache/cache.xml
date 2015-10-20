@@ -2,67 +2,53 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services\6.5.87\classes.jar"
+        jar="/home/shenty/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp/okhttp-urlconnection/2.4.0/a0c195f14cefc7597e0bebf22c3e7b43920dcf4/okhttp-urlconnection-2.4.0.jar"
         jumboMode="false"
-        revision="20.0.0"
-        sha1="dd9247ea0fabe8ee479638c4b4a23e93752be256">
-        <dex dex="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\build\intermediates\pre-dexed\debug\classes-79861aa9e98deea0f1327f771555472122f9908a.jar" />
+        revision="21.1.2"
+        sha1="0a0c195f14cefc7597e0bebf22c3e7b43920dcf4">
+        <dex dex="/home/shenty/Desktop/platypus/Platypus-Android/app/build/intermediates/pre-dexed/debug/okhttp-urlconnection-2.4.0-a70740a94f8ef5f1d579b48cf387ebc861ef2f90.jar" />
     </item>
     <item
-        jar="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\libs\crwlib_core.jar"
+        jar="/home/shenty/.gradle/caches/modules-2/files-2.1/com.vividsolutions/jts/1.13/3ccfb9b60f04d71add996a666ceb8902904fd805/jts-1.13.jar"
         jumboMode="false"
-        revision="20.0.0"
-        sha1="f1ec0842283e928ed04fdaf3801bb7d117ec470a">
-        <dex dex="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\build\intermediates\pre-dexed\debug\crwlib_core-dedc5b876cdb622e4dc7f6ac0f8da32534ba1615.jar" />
+        revision="21.1.2"
+        sha1="3ccfb9b60f04d71add996a666ceb8902904fd805">
+        <dex dex="/home/shenty/Desktop/platypus/Platypus-Android/app/build/intermediates/pre-dexed/debug/jts-1.13-bcbc3d8132895caadc09597b084c3b98733d7f97.jar" />
     </item>
     <item
-        jar="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\libs\mail.jar"
+        jar="/home/shenty/.gradle/caches/modules-2/files-2.1/com.jakewharton/disklrucache/2.0.2/93b399470e72c0bc8cb52379943b63c9aa586cd8/disklrucache-2.0.2.jar"
         jumboMode="false"
-        revision="20.0.0"
-        sha1="428e267abff0d10802ccde86b915da2c20471160">
-        <dex dex="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\build\intermediates\pre-dexed\debug\mail-9914cea220fbb98dcedf8a03882a0aea66bcf5b7.jar" />
+        revision="21.1.2"
+        sha1="93b399470e72c0bc8cb52379943b63c9aa586cd8">
+        <dex dex="/home/shenty/Desktop/platypus/Platypus-Android/app/build/intermediates/pre-dexed/debug/disklrucache-2.0.2-92c0c6a7289de462dd109d1389fc50e7a5ed1839.jar" />
     </item>
     <item
-        jar="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
+        jar="/home/shenty/Desktop/platypus/Platypus-Android/app/build/intermediates/exploded-aar/com.mapbox.mapboxsdk/mapbox-android-sdk/0.7.4/jars/classes.jar"
         jumboMode="false"
-        revision="20.0.0"
-        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\build\intermediates\pre-dexed\debug\classes-6e94af24ef5d10abc2b66f35b90c366bfd4849ec.jar" />
+        revision="21.1.2"
+        sha1="4bd64ebaab7edb0bccbb031dbdb7b1a7239d58f7">
+        <dex dex="/home/shenty/Desktop/platypus/Platypus-Android/app/build/intermediates/pre-dexed/debug/classes-17d40d59bcc9041f8408336ef0d852aac40331e1.jar" />
     </item>
     <item
-        jar="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\libs\additionnal.jar"
+        jar="/home/shenty/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar"
         jumboMode="false"
-        revision="20.0.0"
-        sha1="bd9e8dc422bb8c8405359947fe9f4282b49f57f4">
-        <dex dex="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\build\intermediates\pre-dexed\debug\additionnal-d43df00b98edbe2a30926c01364071a43802eeb0.jar" />
+        revision="21.1.2"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="/home/shenty/Desktop/platypus/Platypus-Android/app/build/intermediates/pre-dexed/debug/library-2.4.0-b4a9765de051485600ff404d8e205e741d10e6c2.jar" />
     </item>
     <item
-        jar="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\libs\activation.jar"
+        jar="/home/shenty/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp/okhttp/2.4.0/40340c0748190fe897baf7bffbc1b282734294e5/okhttp-2.4.0.jar"
         jumboMode="false"
-        revision="20.0.0"
-        sha1="d1257cbff6faa44c1f325ae0d9413522d4644383">
-        <dex dex="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\build\intermediates\pre-dexed\debug\activation-469bbff69f1946f09a4ce1c4aad1d1d8f5ebd9b8.jar" />
+        revision="21.1.2"
+        sha1="40340c0748190fe897baf7bffbc1b282734294e5">
+        <dex dex="/home/shenty/Desktop/platypus/Platypus-Android/app/build/intermediates/pre-dexed/debug/okhttp-2.4.0-07fc1d0b02281c57a48010570357d2370fe89fa6.jar" />
     </item>
     <item
-        jar="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
+        jar="/home/shenty/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.4.0/5b72bf48563ea8410e650de14aa33ff69a3e8c35/okio-1.4.0.jar"
         jumboMode="false"
-        revision="20.0.0"
-        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-25322fe6f68127091c275ad55c5d1a22ad81cdf1.jar" />
-    </item>
-    <item
-        jar="C:\Users\Shantanu\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
-        <dex dex="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-c8e20010fa01d4b728f406e18d88c265bb67dc8c.jar" />
-    </item>
-    <item
-        jar="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\libs\jscience.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="3cf905c5fef64bc14c1ff3cdf19a2181e9069d1c">
-        <dex dex="C:\Users\Shantanu\Desktop\platypus\Platypus-Android\app\build\intermediates\pre-dexed\debug\jscience-3fec36335414c0ea9f4734c4fb132883747d0bec.jar" />
+        revision="21.1.2"
+        sha1="5b72bf48563ea8410e650de14aa33ff69a3e8c35">
+        <dex dex="/home/shenty/Desktop/platypus/Platypus-Android/app/build/intermediates/pre-dexed/debug/okio-1.4.0-69a4500b47fb96bf4ea4a17264fd4c7db070c550.jar" />
     </item>
 
 </items>

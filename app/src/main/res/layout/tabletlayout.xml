@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:mapbox="http://schemas.android.com/apk/res-auto"
     android:id="@+id/linlay"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,7 +13,9 @@
         android:layout_gravity="center"
         android:gravity="center_horizontal|center_vertical"
         android:text="Teleop Control"
-        android:textSize="@dimen/open" />
+        android:textSize="@dimen/open"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:id="@+id/printIpAddress"
@@ -22,31 +25,26 @@
         android:gravity="center_horizontal|center_vertical"
         android:text="IP Address:"
         android:textColor="@color/green"
-        android:background="@color/cyan"/>
-
+        android:background="@color/cyan"
+        android:layout_below="@+id/controlScreenEnter"
+        android:layout_alignParentStart="true" />
 
     <RelativeLayout
+        android:id="@+id/relativeLayout"
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content">
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/printIpAddress"
+        android:layout_alignParentStart="true">
 
-        <fragment
-            android:id="@+id/map"
-            android:name="com.google.android.gms.maps.MapFragment"
-            android:layout_width="match_parent"
-            android:layout_height="220dp" >
-
-            <!-- android:layout_width="150dp"-->
-        </fragment>
-        <!-- <ImageView
-            android:id="@+id/cameraStream"
+        <com.mapbox.mapboxsdk.views.MapView
+            android:id="@+id/mapview"
             android:layout_width="fill_parent"
-            android:layout_height="110dp"
+            android:layout_height="350dp"
+            mapbox:mapid="shantanuv.nkob79p0"
+            mapbox:accessToken="pk.eyJ1Ijoic2hhbnRhbnV2IiwiYSI6ImNpZmZ0NTMzZzh4YTJyeWx4azhiZ2toMzUifQ.juDMFHzZybMwwO1C4DUN1A"
 
-            android:layout_toRightOf="@id/map" />-->
-        <!-- android:src="@drawable/streamnotfound" -->
-
+            />
     </RelativeLayout>
-
 
 
 
@@ -58,11 +56,142 @@
             android:layout_height="wrap_content"
             android:text="autoBox" />
     -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+
+        android:layout_below="@+id/relativeLayout2"
+        android:layout_alignParentStart="true">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SensorType"
+            android:id="@+id/SensorType"
+            android:layout_marginStart="251dp"
+            android:paddingTop="5dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SensorValue"
+            android:id="@+id/SensorValue"
+            android:textColor="@color/green"
+            android:background="@color/cyan"
+            android:layout_centerVertical="true"
+            android:layout_alignEnd="@+id/SensorType" />
+
+        <ToggleButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/SensorStart"
+            android:textOff="Show Sensorvalue"
+            android:textOn="Show Sensorvalue"
+            android:layout_alignParentBottom="true"
+            android:layout_toStartOf="@+id/sensor1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sensor 1"
+            android:id="@+id/sensor1"
+            android:layout_toEndOf="@id/SensorType"
+            android:layout_marginLeft="20dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sensor 2"
+            android:id="@+id/sensor2"
+            android:layout_alignTop="@+id/sensor1"
+            android:layout_toEndOf="@+id/sensor1"
+            android:layout_marginStart="73dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sensor 3"
+            android:id="@+id/sensor3"
+            android:layout_marginStart="90dp"
+            android:layout_alignTop="@+id/sensor2"
+            android:layout_toEndOf="@+id/sensor2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/sensortype1"
+            android:textStyle="bold"
+            android:text="Null"
+            android:layout_alignStart="@+id/sensor1"
+            android:layout_below="@+id/sensor1"
+            android:layout_marginTop="20dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/sensortype2"
+            android:textStyle="bold"
+            android:text="Null"
+            android:layout_alignStart="@+id/sensor2"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/sensor2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/sensortype3"
+            android:textStyle="bold"
+            android:text="Null"
+            android:layout_alignTop="@+id/sensortype2"
+            android:layout_alignStart="@+id/sensor3" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="0.0"
+            android:id="@+id/SValue1"
+            android:layout_alignTop="@+id/SensorStart"
+            android:layout_alignStart="@+id/sensortype1"
+            android:textSize="18dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="0.0"
+            android:id="@+id/SValue2"
+            android:layout_alignTop="@+id/SValue1"
+            android:layout_alignStart="@+id/sensortype2"
+            android:textSize="18dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="0.0"
+            android:id="@+id/SValue3"
+            android:layout_alignTop="@+id/SValue2"
+            android:layout_alignStart="@+id/sensortype3"
+            android:textSize="18dp" />
+
+
+    </RelativeLayout>
+
     <RelativeLayout
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:paddingTop="40dp"
-        android:paddingLeft="30dp">
+        android:paddingLeft="30dp"
+        android:layout_below="@+id/relativeLayout"
+        android:layout_alignParentStart="true"
+        android:id="@+id/relativeLayout2">
+
         <TextView
             android:id="@+id/thrustBarTextView"
             android:layout_width="wrap_content"
@@ -74,13 +203,13 @@
             android:id="@+id/getThrustProgress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="50"
+            android:text="0"
             android:paddingLeft="20dp"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_toRightOf="@id/thrustBarTextView"
 
             />
-       <SeekBar
+        <SeekBar
             android:id="@+id/thrustBar"
             android:layout_width="400dp"
             android:layout_height="wrap_content"
@@ -110,7 +239,7 @@
             android:id="@+id/getRudderProgress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="50"
+            android:text="0"
             android:paddingTop="20dp"
             android:paddingLeft="17dp"
             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -170,24 +299,23 @@
             android:layout_alignBottom="@+id/waypointStartButton" />
 
 
-        <CheckBox
-            android:id="@+id/autonomousBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Auto"
-            android:layout_alignTop="@+id/rudderBar"
-            android:layout_alignLeft="@+id/log"
-            android:layout_alignStart="@+id/log"
-            android:checked="false" />
-        <TextView
-            android:id="@+id/log"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/tiltButton"
-            android:layout_toRightOf="@id/waypointDeleteButton"/>
-
     </RelativeLayout>
 
+    <CheckBox
+        android:id="@+id/autonomousBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Auto"
+        android:checked="false"
+        android:layout_alignBottom="@+id/relativeLayout2"
+        android:layout_toEndOf="@+id/relativeLayout2"
+        android:layout_toRightOf="@+id/relativeLayout2" />
+    <TextView
+        android:id="@+id/log"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/autonomousBox"
+        android:layout_toRightOf="@+id/relativeLayout2" />
 
 
     <!--     <Button
@@ -196,4 +324,4 @@
         android:layout_height="24dp"
         android:text="Open in Map" />
     -->
-</LinearLayout>
+</RelativeLayout>
