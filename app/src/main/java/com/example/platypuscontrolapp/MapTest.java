@@ -1,13 +1,13 @@
 package com.example.platypuscontrolapp;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
+//import com.google.android.gms.maps.CameraUpdateFactory;
+//import com.google.android.gms.maps.GoogleMap;
 
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.*;
-import com.google.android.gms.maps.model.*;
+//import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+//import com.google.android.gms.maps.model.LatLng;
+//import com.google.android.gms.maps.model.MarkerOptions;
+//import com.google.android.gms.maps.*;
+//import com.google.android.gms.maps.model.*;
 
 import android.app.Activity;
 
@@ -27,16 +27,16 @@ public class MapTest extends Activity
 
 	static TextView loca = null;
 	CheckBox autonomous = null;
-	static Marker boat;
-	static Marker boat2;
-	static LatLng pHollowStartingPoint = new LatLng((float) 40.436871, (float) -79.948825);
+//	static Marker boat;
+	//static Marker boat2;
+//	static LatLng pHollowStartingPoint = new LatLng((float) 40.436871, (float) -79.948825);
 	static double lat;
 	static double lon;
 	static Handler handlerRudder = new Handler();
 	public static int thrustCurrent;
 	public static int rudderCurrent;
 	public static double heading = Math.PI / 2.;
-	public static GoogleMap map;
+//	public static GoogleMap map;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -53,15 +53,15 @@ public class MapTest extends Activity
 					autonomous = (CheckBox) this.findViewById(R.id.Autonomous);
 					loca = (TextView) this.findViewById(R.id.location);
 					// Get a handle to the Map Fragment
-					map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
+//					map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
 					rudder.setProgress(50);
 					// thrust.setProgress(50);
-					map.moveCamera(CameraUpdateFactory.newLatLngZoom(pHollowStartingPoint, 15));
-					makeBoatMarker();
+//					map.moveCamera(CameraUpdateFactory.newLatLngZoom(pHollowStartingPoint, 15));
+					//makeBoatMarker();
 		
 					if (ConnectScreen.simul == true)
 						{
-							simulatedBoat();
+							//simulatedBoat();
 						}
 				}
 		}
@@ -114,70 +114,70 @@ public class MapTest extends Activity
 				});
 		}
 
-	public static void makeBoatMarker()
-		{
-			map.setMyLocationEnabled(true);
-			//map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(ConnectScreen.boat.getPoseX(),ConnectScreen.boat.getPoseY()), 15));
-			map.animateCamera(CameraUpdateFactory.zoomTo(17.0f));
-			
-//			Handler handle = new Handler();
-//			handle.post(new Runnable()
+//	public static void makeBoatMarker()
+//		{
+//			map.setMyLocationEnabled(true);
+//			//map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(ConnectScreen.boat.getPoseX(),ConnectScreen.boat.getPoseY()), 15));
+//			map.animateCamera(CameraUpdateFactory.zoomTo(17.0f));
+//
+////			Handler handle = new Handler();
+////			handle.post(new Runnable()
+////				{
+////					@Override
+////					public void run()
+////						{
+//			//LatLng boatLoc = new LatLng(ConnectScreen.boat.getPoseX(),ConnectScreen.boat.getPoseY());
+//			LatLng boatLoc = new LatLng(0588399.2171,4477511.8839);
+//			boat2 = map.addMarker(new MarkerOptions()
+//			.anchor(.5f, .5f).flat(true)
+//			.rotation(270).title("Boat 1")
+//			.snippet("IP Address: 192.168.1.1")
+//			.position(boatLoc)
+//			.flat(true)
+//
+//		// .icon(BitmapDescriptorFactory.fromResource(R.drawable.arrow))
+//		);
+//
+//		}
+//	public static void simulatedBoat()
+//		{
+//			updateThrust();
+//			updateRudder();
+//
+//
+//
+//			boat2 = map.addMarker(new MarkerOptions()
+//						.anchor(.5f, .5f).flat(true)
+//						.rotation(270).title("Boat 1")
+//						.snippet("IP Address: 192.168.1.1")
+//						.position(pHollowStartingPoint)
+//						.flat(true)
+//					// .icon(BitmapDescriptorFactory.fromResource(R.drawable.arrow))
+//					);
+//
+//			lat = pHollowStartingPoint.latitude;
+//			lon = pHollowStartingPoint.longitude;
+//			map.setMyLocationEnabled(true);
+//			map.moveCamera(CameraUpdateFactory.newLatLngZoom(pHollowStartingPoint, 15));
+//			map.animateCamera(CameraUpdateFactory.zoomTo(17.0f));
+//
+//
+//			handlerRudder.post(new Runnable()
 //				{
 //					@Override
 //					public void run()
 //						{
-			//LatLng boatLoc = new LatLng(ConnectScreen.boat.getPoseX(),ConnectScreen.boat.getPoseY());
-			LatLng boatLoc = new LatLng(0588399.2171,4477511.8839);
-			boat2 = map.addMarker(new MarkerOptions()
-			.anchor(.5f, .5f).flat(true)
-			.rotation(270).title("Boat 1")
-			.snippet("IP Address: 192.168.1.1")
-			.position(boatLoc)
-			.flat(true)
-			
-		// .icon(BitmapDescriptorFactory.fromResource(R.drawable.arrow))
-		);
-
-		}
-	public static void simulatedBoat()
-		{
-			updateThrust();
-			updateRudder();
-
-			
-
-			boat2 = map.addMarker(new MarkerOptions()
-						.anchor(.5f, .5f).flat(true)
-						.rotation(270).title("Boat 1")
-						.snippet("IP Address: 192.168.1.1")
-						.position(pHollowStartingPoint)
-						.flat(true)
-					// .icon(BitmapDescriptorFactory.fromResource(R.drawable.arrow))
-					);
-
-			lat = pHollowStartingPoint.latitude;
-			lon = pHollowStartingPoint.longitude;
-			map.setMyLocationEnabled(true);
-			map.moveCamera(CameraUpdateFactory.newLatLngZoom(pHollowStartingPoint, 15));
-			map.animateCamera(CameraUpdateFactory.zoomTo(17.0f));
-
-		
-			handlerRudder.post(new Runnable()
-				{
-					@Override
-					public void run()
-						{
-							heading -= (rudderCurrent - 50) * .001;
-							lat += Math.cos(heading) * (thrustCurrent - 50) * .0000001;
-							lon += Math.sin(heading) * (thrustCurrent) * .0000001;
-							boat2.setPosition(new LatLng(lat, lon));
-							loca.setText(lat + "\n" + lon);
-							boat2.setRotation((float) (heading * (180 / Math.PI)));
-							handlerRudder.postDelayed(this, 300);
-						}
-				});
-
-		}
+//							heading -= (rudderCurrent - 50) * .001;
+//							lat += Math.cos(heading) * (thrustCurrent - 50) * .0000001;
+//							lon += Math.sin(heading) * (thrustCurrent) * .0000001;
+//							boat2.setPosition(new LatLng(lat, lon));
+//							loca.setText(lat + "\n" + lon);
+//							boat2.setRotation((float) (heading * (180 / Math.PI)));
+//							handlerRudder.postDelayed(this, 300);
+//						}
+//				});
+//
+//		}
 
 }
 

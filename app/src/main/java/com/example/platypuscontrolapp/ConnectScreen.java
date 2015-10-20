@@ -3,7 +3,7 @@ package com.example.platypuscontrolapp;
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
 
-import com.google.android.gms.maps.MapFragment;
+//import com.google.android.gms.maps.MapFragment;
 
 import edu.cmu.ri.crw.CrwNetworkUtils;
 
