@@ -307,7 +307,6 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
                                 mv.addMarker(new Marker("First", "", templocc));
                             }
                             return false;
-
                         }
                     });
 
@@ -488,24 +487,6 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
     {
         if (getBoatType() == true) {
             //log.append("asdf");
-            boat2 = new Marker(currentBoat.getIpAddress().toString(), "Boat", new LatLng(pHollowStartingPoint.getLatitude(), pHollowStartingPoint.getLongitude()));
-            mv.addMarker(boat2);
-            mv.setCenter(new ILatLng() {
-                @Override
-                public double getLatitude() {
-                    return pHollowStartingPoint.getLatitude();
-                }
-
-                @Override
-                public double getLongitude() {
-                    return pHollowStartingPoint.getLongitude();
-                }
-
-                @Override
-                public double getAltitude() {
-                    return 0;
-                }
-            });
 
             //waypoint on click listener
             /*
@@ -544,8 +525,19 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
                     waypointList.clear();
                     isCurrentWaypointDone = true;
 
+                    try {
+                        LatLng curLoc = new LatLng(latlongloc.latitudeValue(SI.RADIAN) * 180 / Math.PI, latlongloc.longitudeValue(SI.RADIAN) * 180 / Math.PI);
+                        boat2 = new Marker(currentBoat.getIpAddress().toString(), "Boat", curLoc);
+                        boat2.setPoint(curLoc);
+                        mv.animate();
+                        mv.addMarker(boat2);
+                    } catch (Exception e) {
+                        boat2 = new Marker(currentBoat.getIpAddress().toString(), "Boat", new LatLng(pHollowStartingPoint.getLatitude(), pHollowStartingPoint.getLongitude()));
+                    }
+                    System.out.println("called delete");
                 }
             });
+
 
             networkThread = new NetworkAsync().execute(); //launch networking asnyc task
 
@@ -558,6 +550,31 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
         else
         {
             log.append("fail");
+        }
+
+        try {
+            boat2 = new Marker(currentBoat.getIpAddress().toString(), "Boat", new LatLng(pHollowStartingPoint.getLatitude(), pHollowStartingPoint.getLongitude()));
+            mv.addMarker(boat2);
+            mv.setCenter(new ILatLng() {
+                @Override
+                public double getLatitude() {
+                    return pHollowStartingPoint.getLatitude();
+                }
+
+                @Override
+                public double getLongitude() {
+                    return pHollowStartingPoint.getLongitude();
+                }
+
+                @Override
+                public double getAltitude() {
+                    return 0;
+                }
+            });
+        }
+        catch(Exception e)
+        {
+
         }
     }
 
@@ -1288,8 +1305,9 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
         thread.start();
     }
 
-    public void InitSensorData(){
-        while(currentBoat==null) {}
+    public void InitSensorData() {
+        while (currentBoat == null) {
+        }
 
         final SensorListener sensorListener = new SensorListener() {
             @Override
@@ -1325,39 +1343,10 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
                 sensorV = "Failed to get sensor value";
             }
         });
-        //}
-        //}
-
-        // @Override
-        //public void failed(FunctionError functionError) {
-
-//            }
-        //      });
-
-
-
-
-//            @Override
-//            public void completed(Void aVoid) {
-//               // sensorData.setText(Data.toString());
-//                if(Data.toString()==null){
-//                    sensorV = "Waiting...";
-//                }
-//                else {
-//                    sensorV = Data.toString();
-//                }
-//            }
-//
-//            @Override
-//            public void failed(FunctionError functionError) {
-//
-//            }
-//        });
-
-
     }
+
     //  Make return button same as home button
-    @Override
+        @Override
     public void onBackPressed() {
         //Log.d("CDA", "onBackPressed Called");
         Intent setIntent = new Intent(Intent.ACTION_MAIN);
