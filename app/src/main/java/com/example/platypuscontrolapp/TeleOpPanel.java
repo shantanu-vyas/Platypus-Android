@@ -534,13 +534,17 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
                     isCurrentWaypointDone = true;
 
                     try {
+                        mv.clear();
                         LatLng curLoc = new LatLng(latlongloc.latitudeValue(SI.RADIAN) * 180 / Math.PI, latlongloc.longitudeValue(SI.RADIAN) * 180 / Math.PI);
                         boat2 = new Marker(currentBoat.getIpAddress().toString(), "Boat", curLoc);
                         boat2.setPoint(curLoc);
                         mv.animate();
                         mv.addMarker(boat2);
                     } catch (Exception e) {
+
                         boat2 = new Marker(currentBoat.getIpAddress().toString(), "Boat", new LatLng(pHollowStartingPoint.getLatitude(), pHollowStartingPoint.getLongitude()));
+                        mv.animate();
+                        mv.addMarker(boat2);
                     }
                     System.out.println("called delete");
                 }
@@ -561,7 +565,7 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
         }
 
         try {
-            boat2 = new Marker(currentBoat.getIpAddress().toString(), "Boat", new LatLng(pHollowStartingPoint.getLatitude(), pHollowStartingPoint.getLongitude()));
+            boat2 = new Marker("Boat", "Boat", new LatLng(pHollowStartingPoint.getLatitude(), pHollowStartingPoint.getLongitude()));
             mv.addMarker(boat2);
             mv.setCenter(new ILatLng() {
                 @Override
@@ -663,10 +667,7 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
         }
         @Override
         protected String doInBackground(String... arg0) {
-//            if (currentBoat == null)
-//            {
-//                currentBoat = new Boat();
-//            }
+
             PoseListener pl = new PoseListener() { //gets the location of the boat
                 public void receivedPose(UtmPose upwcs) {
 
@@ -685,6 +686,7 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
                                         _pose.origin.zone, 'T', _pose.pose.getX(),
                                         _pose.pose.getY(), SI.METER),
                                 ReferenceEllipsoid.WGS84);
+                        System.out.println(latlongloc.toString());
 
                         //Log.i(logTag, "rot:" + rot);
                     }
@@ -773,14 +775,14 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
         protected void onProgressUpdate(Integer... result) {
 
             //cameraStream.setImageBitmap(currentImage);
+
+
             try
             {
-            Projection tempproj = mv.getProjection();
-            LatLng curLoc = new LatLng(latlongloc.latitudeValue(SI.RADIAN) * 180 / Math.PI, latlongloc.longitudeValue(SI.RADIAN) * 180 / Math.PI);
-            boat2.setPoint(curLoc);
-            mv.animate();
-
-
+                Projection tempproj = mv.getProjection();
+                LatLng curLoc = new LatLng(latlongloc.latitudeValue(SI.RADIAN) * 180 / Math.PI, latlongloc.longitudeValue(SI.RADIAN) * 180 / Math.PI);
+                boat2.setPoint(curLoc);
+                mv.animate();
             if (firstTime == true) {
                 try {
                     mv.getController().setCenter(new ILatLng() {
@@ -814,7 +816,6 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
         }
             catch(Exception e)
             {
-
             }
 
 
@@ -1156,10 +1157,8 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
                             TeleOpPanel.this,
                             android.R.layout.select_dialog_singlechoice);
                     listip.setAdapter(adapter);
-                    System.out.println(ipaddrs.size() + "size");
                     for (Map.Entry<SocketAddress, String> i : ipaddrs)
                     {
-                        System.out.println("for " + i.toString());
                         adapter.add(i);
                         adapter.notifyDataSetChanged();
                     }
@@ -1182,11 +1181,39 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
                             {
                                 @Override
                                 public void run() {
-                                    System.out.println("connecting to boat on: " + newtemp.getKey().toString());
+
+                                    //currentBoat = new Boat((InetSocketAddress)newtemp.getKey());
                                     currentBoat.returnServer().setVehicleService(newtemp.getKey());
+                                    PoseListener pl = new PoseListener() { //gets the location of the boat
+                                        public void receivedPose(UtmPose upwcs) {
+
+                                            UtmPose _pose = upwcs.clone();
+                                            {
+                                                xValue = _pose.pose.getX();
+                                                yValue = _pose.pose.getY();
+                                                zValue = _pose.pose.getZ();
+                                                rotation = String.valueOf(Math.PI / 2
+                                                        - _pose.pose.getRotation().toYaw());
+                                                rot =  Math.PI/2 - _pose.pose.getRotation().toYaw();
+
+                                                zone = String.valueOf(_pose.origin.zone);
+
+                                                latlongloc = UTM.utmToLatLong(UTM.valueOf(
+                                                                _pose.origin.zone, 'T', _pose.pose.getX(),
+                                                                _pose.pose.getY(), SI.METER),
+                                                        ReferenceEllipsoid.WGS84);
+                                                System.out.println(latlongloc.toString());
+
+                                                //Log.i(logTag, "rot:" + rot);
+                                            }
+                                        }
+                                    };
+
+                                    currentBoat.returnServer().addPoseListener(pl, null);
                                 }
                             };
                             t.start();
+
                             ipAddressBox.setText("IP ADDRESS: "+ newtemp.getKey().toString());
                             regcheck.dismiss();
                         }
