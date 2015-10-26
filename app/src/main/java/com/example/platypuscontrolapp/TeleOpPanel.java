@@ -57,11 +57,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
@@ -1113,6 +1115,8 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
                 actual = actualBoat.isChecked();
 
                 textIpAddress = ipAddress.getText().toString();
+                System.out.println("asdfasdfasdf");
+                System.out.println("IP Address entered is: " + textIpAddress);
                 if (direct.isChecked()) {
                     if (ipAddress.getText() == null || ipAddress.getText().equals("")) {
                         address = CrwNetworkUtils.toInetSocketAddress("127.0.0.1" + ":11411");
@@ -1249,43 +1253,99 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
         return true;
     }
 
-    public static void FindIP() {
-        address = CrwNetworkUtils.toInetSocketAddress(textIpAddress+":6077");
-        Thread thread = new Thread(){
-            public void run(){
+//    public void FindIP() {
+//
+//
 
-                currentBoat = new Boat();
-                UdpVehicleServer tempserver = new UdpVehicleServer();
-                currentBoat.returnServer().setRegistryService(address);
-                currentBoat.returnServer().getVehicleServices(new FunctionObserver<Map<SocketAddress, String>>() {
-                    @Override
-                    public void completed(Map<SocketAddress, String> socketAddressStringMap) {
-                        System.out.println("Completed");
-                        for (Map.Entry<SocketAddress, String> entry : socketAddressStringMap.entrySet()) {
-                            //newaddressstring = entry.getKey().toString();
-                            //System.out.println(newaddressstring);
-                            currentBoat.returnServer().setVehicleService(entry.getKey());
+//        address = CrwNetworkUtils.toInetSocketAddress(textIpAddress + ":6077");
+//
+//        Thread thread = new Thread() {
+//            public void run() {
+//
+//                currentBoat = new Boat();
+//                UdpVehicleServer tempserver = new UdpVehicleServer();
+//                currentBoat.returnServer().setRegistryService(address);
+//                currentBoat.returnServer().getVehicleServices(new FunctionObserver<Map<SocketAddress, String>>() {
+//                    @Override
+//                    public void completed(Map<SocketAddress, String> socketAddressStringMap) {
+//                        System.out.println("Completed");
+//                        for (Map.Entry<SocketAddress, String> entry : socketAddressStringMap.entrySet()) {
+//
+//
+//                            //newaddressstring = entry.getKey().toString();
+//                            //System.out.println(newaddressstring);
+//                            currentBoat.returnServer().setVehicleService(entry.getKey());
+//
+//                            System.out.println(entry.getKey().toString());
+//                            System.out.println(entry.getValue().toString());
+//
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void failed(FunctionError functionError) {
+//                        System.out.println("No Response");
+//                    }
+//                });
+//                //currentBoat = new Boat(CrwNetworkUtils.toInetSocketAddress(newaddressstring));
+//                //System.out.println("Boat address" + currentBoat.getIpAddress());
+//                // regcheck.show();
+//                //}
+//            }
+//        };
+//
+//        thread.start();
+//        //System.out.println("print here: " + newaddressstring);
+//        //currentBoat = new Boat(CrwNetworkUtils.toInetSocketAddress(newaddressstring));
+//
+//    }
+public void FindIP() {
 
-                            System.out.println(entry.getKey().toString());
-                            System.out.println(entry.getValue().toString());
+       final Dialog regcheck = new Dialog(context);
+       regcheck.setContentView(R.layout.registryview);
+       ListView listip = (ListView) regcheck.findViewById(R.id.regiplist);
+       final ArrayAdapter<Map.Entry<SocketAddress, String>> adapter = new ArrayAdapter<Map.Entry<SocketAddress, String>>(
+               TeleOpPanel.this,
+               android.R.layout.select_dialog_singlechoice);
+       listip.setAdapter(adapter);
 
-                        }
+
+    Thread thread = new Thread() {
+
+        public void run() {
+            address = CrwNetworkUtils.toInetSocketAddress(textIpAddress + ":6077");
+            currentBoat = new Boat();
+            UdpVehicleServer tempserver = new UdpVehicleServer();
+            currentBoat.returnServer().setRegistryService(address);
+            currentBoat.returnServer().getVehicleServices(new FunctionObserver<Map<SocketAddress, String>>() {
+                @Override
+                public void completed(Map<SocketAddress, String> socketAddressStringMap) {
+                    System.out.println("Completed");
+                    for (Map.Entry<SocketAddress, String> entry : socketAddressStringMap.entrySet()) {
+                        //newaddressstring = entry.getKey().toString();
+                        //System.out.println(newaddressstring);
+                        currentBoat.returnServer().setVehicleService(entry.getKey());
+//                        adapter.add(entry);
+//                        adapter.notifyDataSetChanged();
+
+                        System.out.println(entry.getKey().toString());
+                        System.out.println(entry.getValue().toString());
+
                     }
-                    @Override
-                    public void failed(FunctionError functionError) {
-                        System.out.println("No Response");
-                    }
-                });
-                //currentBoat = new Boat(CrwNetworkUtils.toInetSocketAddress(newaddressstring));
-                //System.out.println("Boat address" + currentBoat.getIpAddress());
-            }
-        };
-        thread.start();
+                }
 
-        //System.out.println("print here: " + newaddressstring);
-        //currentBoat = new Boat(CrwNetworkUtils.toInetSocketAddress(newaddressstring));
+                @Override
+                public void failed(FunctionError functionError) {
+                    System.out.println("No Response");
+                }
+            });
+//            regcheck.show();
+        }
+    };
+    thread.start();
 
-    }
+}
+
     public void SendEmail()
     {
         Thread thread = new Thread() {
