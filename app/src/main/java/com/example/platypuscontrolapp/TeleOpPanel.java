@@ -2,6 +2,7 @@ package com.example.platypuscontrolapp;
 //code load waypoitns from file
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
 import java.text.DecimalFormat;
@@ -141,6 +142,11 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
     TextView loca = null;
     //Marker boat;
     Marker boat2;
+
+    /* i need to find out the proper way to do this shit */
+    ArrayList<Map.Entry<SocketAddress, String>> iparrlist = new ArrayList<Map.Entry<SocketAddress,String>>();
+    Map.Entry<SocketAddress,String> currentreg; //really need to learn the proper way to do this
+
 
     LatLng pHollowStartingPoint = new LatLng((float) 40.436871,
             (float) -79.948825);
@@ -1128,7 +1134,6 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
                 actual = actualBoat.isChecked();
 
                 textIpAddress = ipAddress.getText().toString();
-                System.out.println("asdfasdfasdf");
                 System.out.println("IP Address entered is: " + textIpAddress);
                 if (direct.isChecked()) {
                     if (ipAddress.getText() == null || ipAddress.getText().equals("")) {
@@ -1141,12 +1146,66 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
                 else if(reg.isChecked())
                 {
                     System.out.println("finding ip");
-                    FindIP();
+                    ArrayList<Map.Entry<SocketAddress, String>> ipaddrs= FindIP();
+                    final Dialog regcheck = new Dialog(context);
+                    regcheck.setContentView(R.layout.registryview);
+                    final ListView listip = (ListView) regcheck.findViewById(R.id.regiplist);
+                    Button regConnect = (Button) regcheck.findViewById(R.id.reglistconnect);
+
+                    final ArrayAdapter<Map.Entry<SocketAddress, String>> adapter = new ArrayAdapter<Map.Entry<SocketAddress, String>>(
+                            TeleOpPanel.this,
+                            android.R.layout.select_dialog_singlechoice);
+                    listip.setAdapter(adapter);
+                    System.out.println(ipaddrs.size() + "size");
+                    for (Map.Entry<SocketAddress, String> i : ipaddrs)
+                    {
+                        System.out.println("for " + i.toString());
+                        adapter.add(i);
+                        adapter.notifyDataSetChanged();
+                    }
+                    if (ipaddrs.size() == 0)
+                    {
+                        regcheck.dismiss();
+                    }
+                    regConnect.setOnClickListener(new OnClickListener() {
+
+                        @Override
+                        public void onClick(View v) {
+//                            currentreg = (Map.Entry<SocketAddress,String>)listip.getSelectedItem();
+//                            System.out.println(currentreg.toString());
+                            ListView lw =(ListView) regcheck.findViewById(R.id.regiplist);
+                            final Object checkedItem = lw.getAdapter().getItem(lw.getCheckedItemPosition());
+                            System.out.println("position:" + checkedItem.toString());
+                            final Map.Entry<SocketAddress,String> newtemp = (Map.Entry<SocketAddress,String>)checkedItem;
+                            System.out.println("positionnt:" + newtemp.toString());
+                            Thread t = new Thread()
+                            {
+                                @Override
+                                public void run() {
+                                    System.out.println("connecting to boat on: " + newtemp.getKey().toString());
+                                    currentBoat.returnServer().setVehicleService(newtemp.getKey());
+                                }
+                            };
+                            t.start();
+                            ipAddressBox.setText("IP ADDRESS: "+ newtemp.getKey().toString());
+                            regcheck.dismiss();
+                        }
+                    });
+                    regcheck.show();
+
                 }
+
                 dialog.dismiss();
+                //                            System.out.println("Connecting to bot;");
+//                            Object tempaddr = listip.getSelectedItem();
+//                            System.out.println("fuckshitasse");
+//                            final Map.Entry<SocketAddress, String> regip = (Map.Entry<SocketAddress, String>) tempaddr;
+//                            System.out.println("asdfasdfhurr: " + regip.toString());
+
                 dialogClose();
+
             }
-        });
+                });
 
         dialog.show();
 
@@ -1312,15 +1371,9 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
 //        //currentBoat = new Boat(CrwNetworkUtils.toInetSocketAddress(newaddressstring));
 //
 //    }
-public void FindIP() {
 
-       final Dialog regcheck = new Dialog(context);
-       regcheck.setContentView(R.layout.registryview);
-       ListView listip = (ListView) regcheck.findViewById(R.id.regiplist);
-       final ArrayAdapter<Map.Entry<SocketAddress, String>> adapter = new ArrayAdapter<Map.Entry<SocketAddress, String>>(
-               TeleOpPanel.this,
-               android.R.layout.select_dialog_singlechoice);
-       listip.setAdapter(adapter);
+public ArrayList<Map.Entry<SocketAddress, String>> FindIP() {
+
 
 
     Thread thread = new Thread() {
@@ -1334,15 +1387,14 @@ public void FindIP() {
                 @Override
                 public void completed(Map<SocketAddress, String> socketAddressStringMap) {
                     System.out.println("Completed");
+
                     for (Map.Entry<SocketAddress, String> entry : socketAddressStringMap.entrySet()) {
                         //newaddressstring = entry.getKey().toString();
                         //System.out.println(newaddressstring);
-                        currentBoat.returnServer().setVehicleService(entry.getKey());
-//                        adapter.add(entry);
-//                        adapter.notifyDataSetChanged();
-
-                        System.out.println(entry.getKey().toString());
-                        System.out.println(entry.getValue().toString());
+                       // currentBoat.returnServer().setVehicleService(entry.getKey());
+                        iparrlist.add(entry);
+                        //System.out.println(entry.getKey().toString());
+                        //System.out.println(entry.getValue().toString());
 
                     }
                 }
@@ -1357,6 +1409,7 @@ public void FindIP() {
     };
     thread.start();
 
+    return iparrlist;
 }
 
     public void SendEmail()

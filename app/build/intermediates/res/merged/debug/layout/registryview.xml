@@ -36,6 +36,15 @@
             android:layout_marginTop="86dp"
             android:layout_below="@+id/curregserver"
             android:choiceMode="singleChoice" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Connect"
+            android:id="@+id/reglistconnect"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="77dp" />
     </RelativeLayout>
 </LinearLayout>
 <!-- From: file:/home/shenty/Desktop/platypus/Platypus-Android/app/src/main/res/layout/registryview.xml -->

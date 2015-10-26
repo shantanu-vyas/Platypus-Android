@@ -26,9 +26,9 @@ public final class R {
 		public static final int location_marker = 0x7f020005;
 	}
 	public static final class id {
-		public static final int tooltip_description = 0x7f090032;
-		public static final int tooltip_subdescription = 0x7f090033;
-		public static final int tooltip_title = 0x7f090031;
+		public static final int tooltip_description = 0x7f090033;
+		public static final int tooltip_subdescription = 0x7f090034;
+		public static final int tooltip_title = 0x7f090032;
 	}
 	public static final class layout {
 		public static final int tooltip = 0x7f030007;
