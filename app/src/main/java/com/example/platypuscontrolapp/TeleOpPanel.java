@@ -1091,8 +1091,21 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
 
         direct = (RadioButton) dialog.findViewById(R.id.wifi);
         reg = (RadioButton) dialog.findViewById(R.id.reg);
+        ipAddress.setText("registry.senseplatypus.com");
 
-
+        reg.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (reg.isChecked())
+                {
+                    ipAddress.setText("registry.senseplatypus.com");
+                }
+                else
+                {
+                    ipAddress.setText("");
+                }
+            }
+        });
         if (ipAddress.getText() == null || ipAddress.getText().equals("") || ipAddress.getText().length()==0)
         {
             ipAddressBox.setText("IP Address: 127.0.0.1 (localhost)");
