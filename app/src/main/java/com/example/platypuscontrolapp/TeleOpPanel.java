@@ -528,6 +528,7 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
                     isCurrentWaypointDone = true;
 
                     try {
+                        mv.clear();
                         LatLng curLoc = new LatLng(latlongloc.latitudeValue(SI.RADIAN) * 180 / Math.PI, latlongloc.longitudeValue(SI.RADIAN) * 180 / Math.PI);
                         boat2 = new Marker(currentBoat.getIpAddress().toString(), "Boat", curLoc);
                         boat2.setPoint(curLoc);
@@ -555,7 +556,8 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
         }
 
         try {
-            boat2 = new Marker(currentBoat.getIpAddress().toString(), "Boat", new LatLng(pHollowStartingPoint.getLatitude(), pHollowStartingPoint.getLongitude()));
+            //boat2 = new Marker(currentBoat.getIpAddress().toString(), "Boat", new LatLng(pHollowStartingPoint.getLatitude(), pHollowStartingPoint.getLongitude()));
+            boat2 = new Marker("Boat", "Boat", new LatLng(pHollowStartingPoint.getLatitude(), pHollowStartingPoint.getLongitude()));
             mv.addMarker(boat2);
             mv.setCenter(new ILatLng() {
                 @Override
@@ -1314,19 +1316,14 @@ public class TeleOpPanel extends Activity implements SensorEventListener {
 //    }
 public void FindIP() {
 
-       final Dialog regcheck = new Dialog(context);
-       regcheck.setContentView(R.layout.registryview);
-       ListView listip = (ListView) regcheck.findViewById(R.id.regiplist);
-       final ArrayAdapter<Map.Entry<SocketAddress, String>> adapter = new ArrayAdapter<Map.Entry<SocketAddress, String>>(
-               TeleOpPanel.this,
-               android.R.layout.select_dialog_singlechoice);
-       listip.setAdapter(adapter);
+
 
 
     Thread thread = new Thread() {
 
         public void run() {
-            address = CrwNetworkUtils.toInetSocketAddress(textIpAddress + ":6077");
+            //address = CrwNetworkUtils.toInetSocketAddress(textIpAddress + ":6077");
+            address = CrwNetworkUtils.toInetSocketAddress(textIpAddress);
             currentBoat = new Boat();
             UdpVehicleServer tempserver = new UdpVehicleServer();
             currentBoat.returnServer().setRegistryService(address);
@@ -1337,9 +1334,41 @@ public void FindIP() {
                     for (Map.Entry<SocketAddress, String> entry : socketAddressStringMap.entrySet()) {
                         //newaddressstring = entry.getKey().toString();
                         //System.out.println(newaddressstring);
-                        currentBoat.returnServer().setVehicleService(entry.getKey());
+                       // currentBoat.returnServer().setVehicleService(entry.getKey());
 //                        adapter.add(entry);
 //                        adapter.notifyDataSetChanged();
+
+
+                        currentBoat.returnServer().setVehicleService(entry.getKey());
+                        PoseListener pl = new PoseListener() { //gets the location of the boat
+                            public void receivedPose(UtmPose upwcs) {
+
+                                UtmPose _pose = upwcs.clone();
+                                {
+                                    xValue = _pose.pose.getX();
+                                    yValue = _pose.pose.getY();
+                                    zValue = _pose.pose.getZ();
+                                    rotation = String.valueOf(Math.PI / 2
+                                            - _pose.pose.getRotation().toYaw());
+                                    rot =  Math.PI/2 - _pose.pose.getRotation().toYaw();
+
+                                    zone = String.valueOf(_pose.origin.zone);
+
+                                    latlongloc = UTM.utmToLatLong(UTM.valueOf(
+                                                    _pose.origin.zone, 'T', _pose.pose.getX(),
+                                                    _pose.pose.getY(), SI.METER),
+                                            ReferenceEllipsoid.WGS84);
+                                    System.out.println(latlongloc.toString());
+
+                                    //Log.i(logTag, "rot:" + rot);
+                                }
+                            }
+                        };
+
+                        currentBoat.returnServer().addPoseListener(pl, null);
+
+
+
 
                         System.out.println(entry.getKey().toString());
                         System.out.println(entry.getValue().toString());
